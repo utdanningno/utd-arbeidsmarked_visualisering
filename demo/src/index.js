@@ -1,16 +1,71 @@
-import React, {Component} from 'react'
-import {render} from 'react-dom'
 
-import {SmallVisual, LargeVisual} from '../../src'
+import React, { useState } from "react"
+import {render} from "react-dom"
 
-class Demo extends Component {
-  render() {
-    return <div>
-      <h1>Test job-market-visuals Demo</h1>
-      <SmallVisual/>
-      <LargeVisual/>
-    </div>
-  }
+import { Visualization } from "../../src"
+import "./styles.css"
+
+const data = [
+  "y_elektriker",
+  "u_bioingeniorfag",
+  "y_journalist",
+  "u_journalistikk",
+]
+
+const containerStyles = {
+  display: "flex",
+  flexWrap: "wrap",
+  width: "100%",
+  maxWidth: 1120,
+  margin: "0 auto",
+  padding: "2.5rem 0.75rem",
+  boxSizing: "border-box",
 }
 
-render(<Demo/>, document.querySelector('#demo'))
+const itemStyles = {
+  width: "25%",
+  padding: "0.75rem",
+  boxSizing: "border-box",
+}
+
+const disaggregationValues = ["antall_kvinner", "antall_menn", "antall_ukjent_kjonn"]
+const disaggregationLabels = ["kvinner", "menn", "ukjent kjonn"]
+
+// const disaggregationValues = ["antall_offentlig", "antall_privat", "antall_ukjent_sektor"]
+// const disaggregationLabels = ["Offentlig", "Privat", "Ukjent sektor"]
+
+const Demo = ({ items = data }) => {
+
+  const [limit, setLimit] = useState(8)
+  const [layout, setLayout] = useState("bars")
+  const [disaggregate, setDisaggregate] = useState(null)
+
+  return (
+    <div style={containerStyles}>
+ 
+      <div style={{ width: "25%", padding: "0 0.75rem" }}>
+        <input type="range" min={1} max={30} value={limit} onChange={(el) => setLimit(+el.target.value)} style={{ margin: 0, width: "100%" }} />
+      </div>
+      <div style={{ width: "75%", padding: "0 0.75rem" }}>
+        <button onClick={() => setLayout("bars")}>{ "Bars" }</button>
+        <button onClick={() => setLayout("tree")}>{ "Tree" }</button>
+        <button onClick={() => setDisaggregate(disaggregate ? null : disaggregationValues)}>{ "Toggle disaggregations" }</button>
+      </div>
+      {
+        items.map(item =>
+          <div key={item} style={itemStyles}>
+            <Visualization
+              unoId={item}
+              limit={limit}
+              layout={layout}
+              disaggregateBy={disaggregate}
+              disaggregateLabels={disaggregationLabels}
+            />
+          </div>
+        )
+      }
+    </div>
+  )
+}
+
+render(<Demo/>, document.querySelector("#demo"))
