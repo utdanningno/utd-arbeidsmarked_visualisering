@@ -41,8 +41,8 @@ In order for the chart to show a disaggregated view of the data, you have to pas
 <Visualization
   unoId="u_bioingeniorfag"
   limit={8}
-  disaggregatedBy={["antall_kvinner", "antall_menn"]}
-  disaggregateLabels={["kvinner", "menn"]}
+  disaggregatedBy={["antall_kvinner", "antall_menn", "antall_ukjent_kjonn"]}
+  disaggregateLabels={["kvinner", "menn", "ukjent kjonn"]}
 />
 ```
 
