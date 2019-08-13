@@ -58,7 +58,8 @@ In order to determine the look of the visualization, you can pass a set of color
   unoId="u_bioingeniorfag"
   limit={8}
   colors={{
-    text: "#333333",
+    text: "#333",
+    textTree: "#333",
     primary: "#ff9800",
     disaggregations: ["#ffcc80", "#f57c00", "#ddd"],
     notWorking: "#ff5722",

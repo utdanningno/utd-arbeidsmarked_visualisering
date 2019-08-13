@@ -27,7 +27,14 @@ const VisualizationWrapper = ({
     Promise
       .all([ mappingPromise, allDataPromise ])
       .then(([ mappingData, allData ]) => {
-        setItem({ ...allData[unoId], subItems: mappingData[unoId] })
+
+        const subItems = direction === "utdanning2yrke"
+          ? mappingData[unoId]
+          : mappingData.grouped.uno_id.groups.length > 0
+            ? mappingData.grouped.uno_id.groups[0].doclist.docs
+            : null
+
+        setItem({ ...allData[unoId], subItems })
       })
   }, [direction, unoId])
 

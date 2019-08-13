@@ -57,7 +57,6 @@ const Demo = ({ items = data }) => {
             <Visualization
               unoId={item}
               limit={limit}
-              direction="utdanning2yrke"
               layout={layout}
               disaggregateBy={disaggregate}
               disaggregateLabels={disaggregationLabels}

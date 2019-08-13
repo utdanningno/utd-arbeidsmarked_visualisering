@@ -398,7 +398,8 @@ const Visualization = ({
                       padding: layout === "bars" ? 0 : "0.25rem",
                     }}
                   >
-                    {moreCount ? `+${moreCount} ` : ""}{ subItem.data.data.styrk08_navn || subItem.data.data.tittel.toLowerCase() }
+                    {moreCount ? `+${moreCount} ` : ""}
+                    { subItem.data.data.styrk08_navn || (subItem.data.data.tittel && subItem.data.data.tittel.toLowerCase()) }
                   </div>
                 </motion.foreignObject>
               </g>
