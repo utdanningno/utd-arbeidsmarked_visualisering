@@ -368,9 +368,11 @@ const Visualization = ({
                   onMouseEnter={(evt) => {
                     tooltip.show(evt, {
                       title: subItem.data.data.styrk08_navn || subItem.data.data.tittel,
-                      number: disaggregate && layout === "bars"
-                        ? subItem.data.data[disaggregateBy[0]] + " " + disaggregateLabels[0]
-                        : subItem.data.data.antall_personer + " personer",
+                      number: layout === "bars"
+                        ? disaggregate
+                          ? subItem.data.data[disaggregateBy[0]] + " " + disaggregateLabels[0]
+                          : subItem.data.data.antall_personer + " personer"
+                        : Math.round(100 / subItem.data.data.total * subItem.data.data.antall_personer * 10) / 10 + "%"
                     })
                   }}
                   onMouseLeave={(evt) => tooltip.hide(evt)}
@@ -392,6 +394,7 @@ const Visualization = ({
                       overflow: "hidden",
                       textOverflow: "ellipsis",
                       whiteSpace: "nowrap",
+                      color: layout === "bars" ? colors.text : colors.textTree,
                       padding: layout === "bars" ? 0 : "0.25rem",
                     }}
                   >
@@ -418,8 +421,8 @@ Visualization.propTypes = {
   layout: PropTypes.oneOf(["bars", "tree"]),
   treeGutter: PropTypes.number,
   disaggregate: PropTypes.bool,
-  disaggregateBy: PropTypes.arrayOfType(PropTypes.string),
-  disaggregateLabels: PropTypes.arrayOfType(PropTypes.string),
+  disaggregateBy: PropTypes.arrayOf(PropTypes.string),
+  disaggregateLabels: PropTypes.arrayOf(PropTypes.string),
   colors: PropTypes.object,
 }
 

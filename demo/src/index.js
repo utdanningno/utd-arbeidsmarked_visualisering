@@ -3,6 +3,7 @@ import React, { useState } from "react"
 import {render} from "react-dom"
 
 import { Visualization } from "../../src"
+import "./styles.css"
 
 const data = [
   "y_elektriker",
@@ -28,7 +29,10 @@ const itemStyles = {
 }
 
 const disaggregationValues = ["antall_kvinner", "antall_menn", "antall_ukjent_kjonn"]
-const disaggregationLabels = ["kvinner", "menn", "Ukjent kjonn"]
+const disaggregationLabels = ["kvinner", "menn", "ukjent kjonn"]
+
+// const disaggregationValues = ["antall_offentlig", "antall_privat", "antall_ukjent_sektor"]
+// const disaggregationLabels = ["Offentlig", "Privat", "Ukjent sektor"]
 
 const Demo = ({ items = data }) => {
 
@@ -55,7 +59,7 @@ const Demo = ({ items = data }) => {
               limit={limit}
               direction="utdanning2yrke"
               layout={layout}
-              disaggregatedBy={disaggregate}
+              disaggregateBy={disaggregate}
               disaggregateLabels={disaggregationLabels}
             />
           </div>

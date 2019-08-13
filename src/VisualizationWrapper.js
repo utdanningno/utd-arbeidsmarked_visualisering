@@ -13,7 +13,7 @@ const VisualizationWrapper = ({
   limit = 8,
   layout = "bars",
   direction = "utdanning2yrke",
-  disaggregatedBy,
+  disaggregateBy,
   disaggregateLabels,
   tooltipContent,
   colors = defaultColors,
@@ -62,8 +62,8 @@ const VisualizationWrapper = ({
         <Visualization
           item={{ unoId, subItems: dataset }}
           layout={layout}
-          disaggregate={!!disaggregatedBy}
-          disaggregatedBy={disaggregatedBy}
+          disaggregate={!!disaggregateBy}
+          disaggregateBy={disaggregateBy}
           disaggregateLabels={disaggregateLabels}
           tooltipContent={tooltipContent}
           colors={colors}
@@ -78,8 +78,8 @@ VisualizationWrapper.propTypes = {
   limit: PropTypes.number,
   layout: PropTypes.oneOf(["bars", "tree"]),
   direction: PropTypes.oneOf(["utdanning2yrke", "yrke2utdanning"]),
-  disaggregatedBy: PropTypes.arrayOfType(PropTypes.string),
-  disaggregateLabels: PropTypes.arrayOfType(PropTypes.string),
+  disaggregateBy: PropTypes.arrayOf(PropTypes.string),
+  disaggregateLabels: PropTypes.arrayOf(PropTypes.string),
   colors: PropTypes.object,
 }
 

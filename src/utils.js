@@ -52,6 +52,7 @@ export const useResize = (viz, width, setWidth) => {
 
 export const defaultColors = {
   text: "#333333",
+  textTree: "#FFFFFF",
   primary: "#ff9800",
   disaggregations: ["#f57c00", "#ffcc80", "#ddd"],
   notWorking: "#ff5722",
