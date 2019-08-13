@@ -76,8 +76,11 @@ const VisualizationWrapper = ({
 VisualizationWrapper.propTypes = {
   unoId: PropTypes.string,
   limit: PropTypes.number,
-  layout: PropTypes.string,
-  direction: PropTypes.string,
+  layout: PropTypes.oneOf(["bars", "tree"]),
+  direction: PropTypes.oneOf(["utdanning2yrke", "yrke2utdanning"]),
+  disaggregatedBy: PropTypes.arrayOfType(PropTypes.string),
+  disaggregateLabels: PropTypes.arrayOfType(PropTypes.string),
+  colors: PropTypes.object,
 }
 
 export default VisualizationWrapper

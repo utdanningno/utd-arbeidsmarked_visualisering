@@ -1,5 +1,6 @@
 
 import React, { Fragment } from "react"
+import PropTypes from "prop-types"
 
 const Tooltip = ({ tooltip }) => {
   return tooltip.item ? (
@@ -50,6 +51,10 @@ const Tooltip = ({ tooltip }) => {
       />
     </Fragment>
   ) : null
+}
+
+Tooltip.propTypes = {
+  tooltip: PropTypes.object,
 }
 
 export default Tooltip

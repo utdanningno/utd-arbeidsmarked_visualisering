@@ -1,5 +1,6 @@
 
 import React, { useState, useRef, useMemo, useEffect } from "react"
+import PropTypes from "prop-types"
 import { scaleLinear, max, treemap, hierarchy, stratify } from "d3"
 import { motion, useAnimation } from "framer-motion"
 
@@ -409,6 +410,17 @@ const Visualization = ({
       />
     </div>
   )
+}
+
+Visualization.propTypes = {
+  item: PropTypes.object,
+  itemHeight: PropTypes.number,
+  layout: PropTypes.oneOf(["bars", "tree"]),
+  treeGutter: PropTypes.number,
+  disaggregate: PropTypes.bool,
+  disaggregateBy: PropTypes.arrayOfType(PropTypes.string),
+  disaggregateLabels: PropTypes.arrayOfType(PropTypes.string),
+  colors: PropTypes.object,
 }
 
 export default Visualization
