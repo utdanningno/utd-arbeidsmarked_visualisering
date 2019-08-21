@@ -38,7 +38,7 @@ const VisualizationWrapper = ({
         console.log("aa", unoId, subItems, mappingData);
 
         subItems.forEach(item => {
-          item.tittel = item.nus_kortnavn;
+          item.tittel = item.nus_kortnavn.replace(/\"/g, "");
         });
 
         setItem({ ...allData[unoId], subItems });

@@ -60,7 +60,7 @@ const Demo = ({ items = data }) => {
               layout={layout}
               disaggregateBy={disaggregate}
               disaggregateLabels={disaggregationLabels}
-              //direction="utdanning2yrke"
+              direction="yrke2utdanning"
             />
           </div>
         )
