@@ -12,7 +12,7 @@ The visualization component is a configurable container that render either a bar
 To use the visualization, import the `Visualization` component from the package:
 
 ```js
-impor { Visualization } from "job-market-visuals"
+import { Visualization } from "job-market-visuals"
 ```
 
 To render a basic bar chart with standard tooltips, you can pass a `unoId` to the visualization component. Under the hood this will load the relevant data for this `uno_id` and render a basic bar chart. If you want to control the number of items displayed, you can pass a `limit` prop.
