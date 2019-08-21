@@ -308,6 +308,10 @@ const Visualization = ({
 
   const tooltip = useTooltip({ container: viz })
 
+  // console.log('test', subItem);
+  console.log('test', datapoints);
+
+
   return (
     <div ref={viz} style={{ position: "relative" }}>
       <svg width={width} height={height}>
