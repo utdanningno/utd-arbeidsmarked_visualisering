@@ -5,10 +5,21 @@ import { Visualization } from "../../src";
 import "./styles.css";
 
 const data = [
-  "y_elektriker",
-  "y_journalist",
   "u_bioingeniorfag",
-  "u_journalistikk"
+  "y_elektriker",
+  "u_journalistikk",
+  "y_allmennlege",
+
+  "u_automatiseringsfag",
+  "u_reservedelsfag",
+  "u_journalistikk",
+  
+  "y_journalist",
+  "y_agronom",
+  "y_arkitekt",
+  "y_urolog",
+  
+
 ];
 
 const containerStyles = {
@@ -73,7 +84,7 @@ const Demo = ({ items = data }) => {
             layout={layout}
             disaggregateBy={disaggregate}
             disaggregateLabels={disaggregationLabels}
-            direction={index < 2 ? "yrke2utdanning" : "utdanning2yrke"}
+            direction={item.substring(0,1) == "y" ? "yrke2utdanning" : "utdanning2yrke"}
           />
         </div>
       ))}

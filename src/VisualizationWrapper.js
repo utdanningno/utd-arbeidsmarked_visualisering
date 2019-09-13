@@ -53,7 +53,7 @@ const VisualizationWrapper = ({
     const more = item.subItems.slice(limit).reduce((acc, cur) => {
       return {
         id: "more",
-        tittel: "More",
+        tittel: "Mer",
         count: item.subItems.slice(limit).length,
         antall_personer: (acc.antall_personer || 0) + cur.antall_personer,
         antall_kvinner: (acc.antall_kvinner || 0) + cur.antall_kvinner,
