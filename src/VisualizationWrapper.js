@@ -21,10 +21,10 @@ const VisualizationWrapper = ({
 
   useEffect(() => {
     const mappingPromise = json(
-      `http://cors-anywhere.herokuapp.com/https://sammenlign.utdanning.no/rest/${direction}?uno_id=${unoId}&dataset=total`
+      `https://sammenlign.utdanning.no/rest/${direction}?uno_id=${unoId}&dataset=total`
     );
     const allDataPromise = json(
-      `http://cors-anywhere.herokuapp.com/https://sammenlign.utdanning.no/rest/main?uno_id=${unoId}`
+      `https://sammenlign.utdanning.no/rest/main?uno_id=${unoId}`
     );
     Promise.all([mappingPromise, allDataPromise]).then(
       ([mappingData, allData]) => {

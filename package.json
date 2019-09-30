@@ -1,6 +1,6 @@
 {
   "name": "job-market-visuals",
-  "version": "1.3.0",
+  "version": "1.3.3",
   "description": "job-market-visuals React component",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -20,8 +20,10 @@
     "test:watch": "nwb test-react --server"
   },
   "dependencies": {
+    "@ds-kit/autocomplete": "^3.2.0",
     "d3": "^5.9.7",
-    "framer-motion": "^1.6.1"
+    "framer-motion": "^1.6.1",
+    "react-select": "^3.0.4"
   },
   "peerDependencies": {
     "react": "16.x"
