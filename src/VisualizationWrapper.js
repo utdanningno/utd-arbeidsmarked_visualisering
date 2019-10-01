@@ -35,8 +35,6 @@ const VisualizationWrapper = ({
             ? mappingData.grouped.uno_id.groups[0].doclist.docs
             : null;
 
-        console.log("aa", unoId, subItems, mappingData);
-
         if (direction == "yrke2utdanning")
           subItems.forEach(item => {
             item.tittel = item.nus_kortnavn.replace(/\"/g, "");
