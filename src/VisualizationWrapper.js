@@ -35,10 +35,13 @@ const VisualizationWrapper = ({
             ? mappingData.grouped.uno_id.groups[0].doclist.docs
             : null;
 
-        if (direction == "yrke2utdanning")
-          subItems.forEach(item => {
+        subItems.forEach(item => {
+          if (direction === "yrke2utdanning") {
             item.tittel = item.nus_kortnavn.replace(/\"/g, "");
-          });
+          }
+          item.over_40 = item.antall_personer - item.antall_40
+          item.other_experience = item.antall_personer - item.antall_13 - item.antall_710
+        });
 
         setItem({ ...allData[unoId], subItems });
       }
@@ -64,7 +67,9 @@ const VisualizationWrapper = ({
           (acc.antall_ukjent_sektor || 0) + cur.antall_ukjent_sektor,
         antall_40: (acc.antall_40 || 0) + cur.antall_40,
         antall_13: (acc.antall_13 || 0) + cur.antall_13,
-        antall_710: (acc.antall_710 || 0) + cur.antall_710
+        antall_710: (acc.antall_710 || 0) + cur.antall_710,
+        over_40: (acc.over_40 || 0) + cur.over_40,
+        other_experience: (acc.other_experience || 0) + cur.other_experience,
       };
     }, {});
 

@@ -34,12 +34,12 @@ const Visualization = ({
     if (!width) return [];
 
     const sum = item.subItems.reduce((acc, cur) => {
-      console.log("cur", cur, cur.antall_personer);
+      // console.log("cur", cur, cur.antall_personer);
       if (cur.antall_personer) return acc + cur.antall_personer;
       else return acc + 0;
     }, 0);
 
-    console.log("count:", count, "height:", height, "sum:", sum);
+    // console.log("count:", count, "height:", height, "sum:", sum);
 
     const treeData = item.subItems
       .map(cur => ({
@@ -322,7 +322,7 @@ const Visualization = ({
   const tooltip = useTooltip({ container: viz });
 
   // console.log('test', subItem);
-  console.log("test", datapoints);
+  // console.log("test", datapoints);
 
   return (
     <div ref={viz} style={{ position: "relative" }}>
