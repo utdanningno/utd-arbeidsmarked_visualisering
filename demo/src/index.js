@@ -5,20 +5,19 @@ import { Visualization } from "../../src";
 import "./styles.css";
 
 const data = [
-  "u_bioingeniorfag",
-  "y_elektriker",
-  "u_journalistikk",
-  "y_allmennlege",
+  // "u_bioingeniorfag",
+  // "y_elektriker",
+  // "u_journalistikk",
+  // "y_allmennlege",
 
   "u_automatiseringsfag",
-  "u_reservedelsfag",
-  "u_journalistikk",
+  // "u_reservedelsfag",
+  // "u_journalistikk",
   
-  "y_journalist",
-  "y_agronom",
-  "y_arkitekt",
-  "y_urolog",
-  
+  // "y_journalist",
+  // "y_agronom",
+  // "y_arkitekt",
+  // "y_urolog",
 
 ];
 
@@ -38,15 +37,21 @@ const itemStyles = {
   boxSizing: "border-box"
 };
 
-const disaggregationValues = [
-  "antall_kvinner",
-  "antall_menn",
-  "antall_ukjent_kjonn"
-];
-const disaggregationLabels = ["kvinner", "menn", "ukjent kjonn"];
+// const disaggregationValues = [
+//   "antall_kvinner",
+//   "antall_menn",
+//   "antall_ukjent_kjonn"
+// ];
+// const disaggregationLabels = ["kvinner", "menn", "ukjent kjonn"];
 
 // const disaggregationValues = ["antall_offentlig", "antall_privat", "antall_ukjent_sektor"]
 // const disaggregationLabels = ["Offentlig", "Privat", "Ukjent sektor"]
+
+// const disaggregationValues = ["antall_13", "antall_710", "other_experience"]
+// const disaggregationLabels = ["1-3 years", "7-10 years", "Other"]
+
+const disaggregationValues = ["antall_40", "over_40"]
+const disaggregationLabels = ["Under 40", "Over 40"]
 
 const Demo = ({ items = data }) => {
   const [limit, setLimit] = useState(8);

@@ -35,7 +35,9 @@ To determine the layout (`bars`/`tree`), you can pass a `layout` prop with a str
 
 ### Disaggregations
 
-In order for the chart to show a disaggregated view of the data, you have to pass an array of strings to identify which keys to use for disaggregation. Here is an example of the gender disaggregated chart:
+In order for the chart to show a disaggregated view of the data, you have to pass an array of strings to identify which keys to use for disaggregation.
+
+Here is an example of the gender disaggregated chart:
 
 ```jsx
 <Visualization
@@ -45,6 +47,40 @@ In order for the chart to show a disaggregated view of the data, you have to pas
   disaggregateLabels={["kvinner", "menn", "ukjent kjonn"]}
 />
 ```
+
+Here is an example of the sector disaggregated chart:
+
+```jsx
+<Visualization
+  unoId="u_bioingeniorfag"
+  limit={8}
+  disaggregatedBy={["antall_offentlig", "antall_privat", "antall_ukjent_sektor"]}
+  disaggregateLabels={["Offentlig", "Privat", "Ukjent sektor"]}
+/>
+```
+
+Here is an example of the age disaggregations:
+
+```jsx
+<Visualization
+  unoId="u_bioingeniorfag"
+  limit={8}
+  disaggregatedBy={["antall_40", "over_40"]}
+  disaggregateLabels={["under 40", "Over 40"]}
+/>
+```
+
+Here is an example of the experience disaggregations:
+
+```jsx
+<Visualization
+  unoId="u_bioingeniorfag"
+  limit={8}
+  disaggregatedBy={["antall_13", "antall_710", "other_experience"]}
+  disaggregateLabels={["1-3 years", "7-10 years", "Other"]}
+/>
+```
+
 
 > *Note: Don't forget to pass `disaggregateLabels` in order to provide a user-friendly string to display in the tooltips. By default the basic amount of labeled as "personer".
 
