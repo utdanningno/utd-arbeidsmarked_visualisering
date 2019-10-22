@@ -86,3 +86,30 @@ export const getColor = (id, colors) => {
 export function clamp(num, extent) {
   return Math.min(Math.max(num, extent[0]), extent[1])
 }
+
+export function prepareMore(docs, limit) {
+  if (!docs) return []
+  const more = docs.slice(limit).reduce((acc, cur) => {
+    return {
+      id: "more",
+      tittel: "Mer",
+      count: docs.slice(limit).length,
+      antall_personer: (acc.antall_personer || 0) + cur.antall_personer,
+      antall_kvinner: (acc.antall_kvinner || 0) + cur.antall_kvinner,
+      antall_menn: (acc.antall_menn || 0) + cur.antall_menn,
+      antall_ukjent_kjonn:
+        (acc.antall_ukjent_kjonn || 0) + cur.antall_ukjent_kjonn,
+      antall_offentlig: (acc.antall_offentlig || 0) + cur.antall_offentlig,
+      antall_privat: (acc.antall_privat || 0) + cur.antall_privat,
+      antall_ukjent_sektor:
+        (acc.antall_ukjent_sektor || 0) + cur.antall_ukjent_sektor,
+      antall_40: (acc.antall_40 || 0) + cur.antall_40,
+      antall_13: (acc.antall_13 || 0) + cur.antall_13,
+      antall_710: (acc.antall_710 || 0) + cur.antall_710,
+      over_40: (acc.over_40 || 0) + cur.over_40,
+      other_experience: (acc.other_experience || 0) + cur.other_experience,
+    }
+  }, {})
+  console.log("MOre: ", more)
+  return docs.slice(0, limit).concat([more]);
+}

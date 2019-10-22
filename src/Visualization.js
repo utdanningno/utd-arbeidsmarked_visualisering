@@ -44,13 +44,13 @@ const Visualization = ({
     const treeData = item.subItems
       .map(cur => ({
         ...cur,
-        parent: item.unoId,
+        parent: item.parentId,
         size: +cur.antall_personer,
         total: +sum
       }))
       .concat([
         {
-          id: item.unoId,
+          id: item.parentId,
           parent: "",
           antall_personer: +sum
         }
