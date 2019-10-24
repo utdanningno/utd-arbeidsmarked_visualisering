@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { render } from "react-dom";
 
-import { Visualization, Context2, Context3 } from "../../src";
+import { Context2, Context3 } from "../../src";
 import "./styles.css";
 
 const data = [
