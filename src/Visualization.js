@@ -183,7 +183,7 @@ const Visualization = ({
       y: i * itemHeight + itemHeight / 2,
       width: xScale(subItem.data.data.antall_personer || 0),
       height: 20,
-      fill: getColor(subItem.data.data.styrk08, colors),
+      fill: getColor(subItem.data.data.styrk08 || subItem.data.data.nus_navn, colors),
       transition: {
         delay: i * 0.05,
         duration: 0.25
@@ -202,7 +202,7 @@ const Visualization = ({
       y: subItem.y0,
       width: subItem.x1 - subItem.x0,
       height: subItem.y1 - subItem.y0,
-      fill: getColor(subItem.data.data.styrk08, colors),
+      fill: getColor(subItem.data.data.styrk08 || subItem.data.data.nus_navn, colors),
       transition: {
         delay: (item.subItems.length - i) * 0.05,
         duration: 0.25
@@ -314,7 +314,7 @@ const Visualization = ({
       barAnimation2.start("isBar", { duration: 0.2, delay: 0 });
       barAnimation3.start("isBar", { duration: 0.2, delay: 0 });
     }
-  }, [disaggregate]);
+  }, [disaggregate, disaggregateBy]);
 
   const tooltip = useTooltip({ container: viz });
 

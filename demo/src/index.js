@@ -53,6 +53,29 @@ const itemStyles = {
 const disaggregationValues = ["antall_40", "over_40"]
 const disaggregationLabels = ["Under 40", "Over 40"]
 
+const disaggregations = [
+  {
+    name: "By age",
+    values: ["antall_40", "over_40"],
+    labels: ["Under 40", "Over 40"],
+  },
+  {
+    name: "By experience",
+    values: ["antall_13", "antall_710", "other_experience"],
+    labels: ["1-3 years", "7-10 years", "Other"],
+  },
+  {
+    name: "By sector",
+    values: ["antall_offentlig", "antall_privat", "antall_ukjent_sektor"],
+    labels: ["Offentlig", "Privat", "Ukjent sektor"],
+  },
+  {
+    name: "By gender",
+    values: ["antall_kvinner", "antall_menn", "antall_ukjent_kjonn"],
+    labels: ["kvinner", "menn", "ukjent kjonn"],
+  }
+]
+
 const Header = ({ title, direction }) => {
   return (
     <div style={{ paddingBottom: "1.25rem" }}>
@@ -63,8 +86,31 @@ const Header = ({ title, direction }) => {
 }
 
 const Demo = () => {
+  const [layout, setLayout] = useState("bars")
+  const [disaggregation, setDisaggregation] = useState(null)
   return (
     <div style={containerStyles}>
+
+      <div>
+        <h1>{ "Controls" }</h1>
+        <button onClick={() => setLayout("bars")}>
+          { "Bars" }
+        </button>
+        <button onClick={() => setLayout("tree")}>
+          { "Tree" }
+        </button>
+        <br />
+        <button onClick={() => setDisaggregation(null)}>
+          { "No disaggregation" }
+        </button>
+        {
+          disaggregations.map(d => 
+            <button key={d.name} onClick={() => setDisaggregation(d)}>
+              { d.name }
+            </button>
+          )
+        }
+      </div>
 
       <div style={{ width: "100%" }}>
         <h1>{ "Context 2" }</h1>
@@ -75,10 +121,10 @@ const Demo = () => {
         <Context2
           id="Sykepleie"
           direction="nus_kortnavn2styrk08"
-          layout="bars"
+          layout={layout}
           limit={8}
-          disaggregateBy={disaggregationValues}
-          disaggregateLabels={disaggregationLabels}
+          disaggregateBy={disaggregation ? disaggregation.values : null}
+          disaggregateLabels={disaggregation ? disaggregation.labels : null}
         />
       </div>
       <div style={{ width: "50%" }}>
@@ -86,10 +132,10 @@ const Demo = () => {
         <Context2
           id="y_sykepleier"
           direction="uno_id2styrk08"
-          layout="bars"
+          layout={layout}
           limit={8}
-          disaggregateBy={disaggregationValues}
-          disaggregateLabels={disaggregationLabels}
+          disaggregateBy={disaggregation ? disaggregation.values : null}
+          disaggregateLabels={disaggregation ? disaggregation.labels : null}
         />
       </div>
       <div style={{ width: "50%" }}>
@@ -97,10 +143,10 @@ const Demo = () => {
         <Context2
           id="u_sykepleie"
           direction="uno_id2styrk08"
-          layout="bars"
+          layout={layout}
           limit={8}
-          disaggregateBy={disaggregationValues}
-          disaggregateLabels={disaggregationLabels}
+          disaggregateBy={disaggregation ? disaggregation.values : null}
+          disaggregateLabels={disaggregation ? disaggregation.labels : null}
         />
       </div>
 
@@ -117,10 +163,10 @@ const Demo = () => {
         <Context3
           id="y_dataingenior"
           direction="uno_id2styrk08"
-          layout="bars"
+          layout={layout}
           limit={8}
-          disaggregateBy={disaggregationValues}
-          disaggregateLabels={disaggregationLabels}
+          disaggregateBy={disaggregation ? disaggregation.values : null}
+          disaggregateLabels={disaggregation ? disaggregation.labels : null}
         />
       </div>
       <div style={{ width: "25%" }}>
@@ -128,10 +174,10 @@ const Demo = () => {
         <Context3
           id="y_dataingenior"
           direction="uno_id2nus"
-          layout="bars"
+          layout={layout}
           limit={8}
-          disaggregateBy={disaggregationValues}
-          disaggregateLabels={disaggregationLabels}
+          disaggregateBy={disaggregation ? disaggregation.values : null}
+          disaggregateLabels={disaggregation ? disaggregation.labels : null}
         />
       </div>
       <div style={{ width: "25%" }}>
@@ -139,10 +185,10 @@ const Demo = () => {
         <Context3
           id="y_dataingenior"
           direction="uno_id2nus_kort"
-          layout="bars"
+          layout={layout}
           limit={8}
-          disaggregateBy={disaggregationValues}
-          disaggregateLabels={disaggregationLabels}
+          disaggregateBy={disaggregation ? disaggregation.values : null}
+          disaggregateLabels={disaggregation ? disaggregation.labels : null}
         />
       </div>
       <div style={{ width: "25%" }}>
@@ -150,10 +196,10 @@ const Demo = () => {
         <Context3
           id="u_journalistikk"
           direction="uno_id2styrk08"
-          layout="bars"
+          layout={layout}
           limit={8}
-          disaggregateBy={disaggregationValues}
-          disaggregateLabels={disaggregationLabels}
+          disaggregateBy={disaggregation ? disaggregation.values : null}
+          disaggregateLabels={disaggregation ? disaggregation.labels : null}
         />
       </div>
     </div>
