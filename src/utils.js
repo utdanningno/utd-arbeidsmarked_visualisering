@@ -110,6 +110,5 @@ export function prepareMore(docs, limit) {
       other_experience: (acc.other_experience || 0) + cur.other_experience,
     }
   }, {})
-  console.log("MOre: ", more)
   return docs.slice(0, limit).concat([more]);
 }

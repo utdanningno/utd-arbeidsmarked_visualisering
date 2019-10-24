@@ -34,7 +34,6 @@ const Visualization = ({
     if (!width) return [];
 
     const sum = item.subItems.reduce((acc, cur) => {
-      // console.log("cur", cur, cur.antall_personer);
       if (cur.antall_personer) return acc + cur.antall_personer;
       else return acc + 0;
     }, 0);

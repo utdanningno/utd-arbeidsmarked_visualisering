@@ -50,8 +50,17 @@ const itemStyles = {
 // const disaggregationValues = ["antall_13", "antall_710", "other_experience"]
 // const disaggregationLabels = ["1-3 years", "7-10 years", "Other"]
 
-// const disaggregationValues = ["antall_40", "over_40"]
-// const disaggregationLabels = ["Under 40", "Over 40"]
+const disaggregationValues = ["antall_40", "over_40"]
+const disaggregationLabels = ["Under 40", "Over 40"]
+
+const Header = ({ title, direction }) => {
+  return (
+    <div style={{ paddingBottom: "1.25rem" }}>
+      <h3 style={{ marginTop: "0", marginBottom: "0.5rem" }}>{ title }</h3>
+      <strong>{ direction }</strong>
+    </div>
+  )
+}
 
 const Demo = () => {
   return (
@@ -62,19 +71,36 @@ const Demo = () => {
       </div>
 
       <div style={{ width: "50%" }}>
+        <Header title="Sykepleie" direction="nus_kortnavn2styrk08" />
         <Context2
           id="Sykepleie"
           direction="nus_kortnavn2styrk08"
           layout="bars"
           limit={8}
+          disaggregateBy={disaggregationValues}
+          disaggregateLabels={disaggregationLabels}
         />
       </div>
       <div style={{ width: "50%" }}>
+        <Header title="y_sykepleier" direction="y_* uno_id2styrk08" />
         <Context2
           id="y_sykepleier"
           direction="uno_id2styrk08"
           layout="bars"
           limit={8}
+          disaggregateBy={disaggregationValues}
+          disaggregateLabels={disaggregationLabels}
+        />
+      </div>
+      <div style={{ width: "50%" }}>
+        <Header title="u_sykepleie" direction="u_* uno_id2styrk08" />
+        <Context2
+          id="u_sykepleie"
+          direction="uno_id2styrk08"
+          layout="bars"
+          limit={8}
+          disaggregateBy={disaggregationValues}
+          disaggregateLabels={disaggregationLabels}
         />
       </div>
 
@@ -87,30 +113,47 @@ const Demo = () => {
         <h1>{ "Context 3" }</h1>
       </div>
       <div style={{ width: "25%" }}>
-        <h3>{ "y_* uno_id2styrk08" }</h3>
+        <Header title="y_dataingenior" direction="y_* uno_id2styrk08" />
         <Context3
           id="y_dataingenior"
           direction="uno_id2styrk08"
           layout="bars"
           limit={8}
+          disaggregateBy={disaggregationValues}
+          disaggregateLabels={disaggregationLabels}
         />
       </div>
       <div style={{ width: "25%" }}>
-        <h3>{ "y_* uno_id2nus" }</h3>
+        <Header title="y_dataingenior" direction="y_* uno_id2nus" />
         <Context3
           id="y_dataingenior"
           direction="uno_id2nus"
           layout="bars"
           limit={8}
+          disaggregateBy={disaggregationValues}
+          disaggregateLabels={disaggregationLabels}
         />
       </div>
       <div style={{ width: "25%" }}>
-        <h3>{ "u_* uno_id2styrk08" }</h3>
+        <Header title="y_dataingenior" direction="y_* uno_id2nus_kort" />
+        <Context3
+          id="y_dataingenior"
+          direction="uno_id2nus_kort"
+          layout="bars"
+          limit={8}
+          disaggregateBy={disaggregationValues}
+          disaggregateLabels={disaggregationLabels}
+        />
+      </div>
+      <div style={{ width: "25%" }}>
+        <Header title="u_journalistikk" direction="u_* uno_id2styrk08" />
         <Context3
           id="u_journalistikk"
           direction="uno_id2styrk08"
           layout="bars"
           limit={8}
+          disaggregateBy={disaggregationValues}
+          disaggregateLabels={disaggregationLabels}
         />
       </div>
     </div>

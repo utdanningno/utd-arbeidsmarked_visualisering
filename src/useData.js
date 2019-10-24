@@ -46,7 +46,6 @@ export function useData(unoId = "y_sykepleier", direction = "utdanning2yrke") {
   const [item, setItem] = useState()
   useEffect(() => {
     getData(unoId, direction).then(data => {
-      console.log("Item: ", data)
       setItem(data)
     })
   }, [unoId, direction])
