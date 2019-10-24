@@ -91,7 +91,7 @@ const Demo = () => {
   return (
     <div style={containerStyles}>
 
-      <div>
+      <div style={{ position: "sticky", top: 0, zIndex: 999, background: "#FFF", width: "100%" }}>
         <h1>{ "Controls" }</h1>
         <button onClick={() => setLayout("bars")}>
           { "Bars" }
