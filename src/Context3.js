@@ -5,6 +5,7 @@ import PropTypes from "prop-types"
 import { useData } from "./useData"
 import { defaultColors, prepareMore } from "./utils"
 import Visualization from "./Visualization"
+import MissingData from "./MissingData"
 
 const Context3 = ({
   id = "y_sykepleier",
@@ -14,7 +15,8 @@ const Context3 = ({
   disaggregateBy,
   disaggregateLabels,
   tooltipContent,
-  colors = defaultColors
+  colors = defaultColors,
+  missingDataText = "Missing data",
 }) => {
 
   const item = useData(id, direction)
@@ -24,7 +26,7 @@ const Context3 = ({
   return (
     <Fragment>
       {
-        docs &&
+        (docs && docs.length) ?
         <Visualization
           item={{
             parentId: item.main.uno_id,
@@ -36,7 +38,7 @@ const Context3 = ({
           disaggregateLabels={disaggregateLabels}
           tooltipContent={tooltipContent}
           colors={colors}
-        />
+        /> : <MissingData text={missingDataText} />
       }
     </Fragment>
   )

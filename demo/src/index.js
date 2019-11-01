@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { render } from "react-dom";
 
-import { Context2, Context3 } from "../../src";
+import { Context2, Context3, getData } from "../../src";
 import "./styles.css";
 
 const data = [
@@ -36,6 +36,13 @@ const itemStyles = {
   padding: "0.75rem",
   boxSizing: "border-box"
 };
+
+const selectStyles = {
+  appearance: "none",
+  height: "2.5rem",
+  fontSize: "inherit",
+  fontFamily: "inherit",
+}
 
 // const disaggregationValues = [
 //   "antall_kvinner",
@@ -85,6 +92,52 @@ const Header = ({ title, direction }) => {
   )
 }
 
+const Context2Demo = ({ layout, disaggregation }) => {
+  const [korts, setKorts] = useState(null)
+  const [nusKortnavn, setNusKortnavn] = useState("all")
+
+  useEffect(() => {
+    getData("y_sykepleier", "uno_id2nus_kort")
+      .then(d => {
+        if (d && d.mapping && d.mapping.docs) setKorts(d.mapping.docs)
+      })
+  }, [])
+
+  return (
+    <div style={{ width: "100%" }}>
+
+      <div style={{ marginBottom: "1.25rem" }}>
+        {
+          korts &&
+          <select
+            style={selectStyles}
+            value={nusKortnavn}
+            onChange={(evt) => setNusKortnavn(evt.target.value)}
+          >
+            <option value="all">{ "All" }</option>
+            {
+              korts.map(d => {
+                const name = d.nus_kortnavn.replace(/"/g, "")
+                return <option key={d.id} value={name}>{name}</option>
+              })
+            }
+          </select>
+        }
+      </div>
+
+      <Context2
+        id={nusKortnavn === "all" ? "y_sykepleier" : nusKortnavn}
+        direction={nusKortnavn === "all" ? "uno_id2styrk08" : "nus_kortnavn2styrk08"}
+        layout={layout}
+        limit={8}
+        disaggregateBy={disaggregation ? disaggregation.values : null}
+        disaggregateLabels={disaggregation ? disaggregation.labels : null}
+      />
+      
+    </div>
+  )
+}
+
 const Demo = () => {
   const [layout, setLayout] = useState("bars")
   const [disaggregation, setDisaggregation] = useState(null)
@@ -115,6 +168,8 @@ const Demo = () => {
       <div style={{ width: "100%" }}>
         <h1>{ "Context 2" }</h1>
       </div>
+
+      <Context2Demo layout={layout} disaggregation={disaggregation} />
 
       <div style={{ width: "50%" }}>
         <Header title="Sykepleie" direction="nus_kortnavn2styrk08" />
