@@ -57,6 +57,7 @@ Context2.propTypes = {
   disaggregateBy: PropTypes.arrayOf(PropTypes.string),
   disaggregateLabels: PropTypes.arrayOf(PropTypes.string),
   colors: PropTypes.object,
+  missingDataText: PropTypes.string,
 }
 
 export default Context2
