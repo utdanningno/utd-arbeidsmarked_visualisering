@@ -48,7 +48,7 @@ Context3.propTypes = {
   id: PropTypes.string,
   direction: PropTypes.oneOf([
     "uno_id2nus",
-    "uno_id2nus_kort",
+    "uno_id2nus_kortnavn",
     "uno_id2styrk08",
   ]),
   limit: PropTypes.number,

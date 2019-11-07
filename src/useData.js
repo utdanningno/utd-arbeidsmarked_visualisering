@@ -7,7 +7,7 @@ export async function getData(id, direction) {
 
   const idNames = {
     "uno_id2nus": "uno_id",
-    "uno_id2nus_kort": "uno_id",
+    "uno_id2nus_kortnavn": "uno_id",
     "uno_id2styrk08": "uno_id",
     "nus_kortnavn2styrk08": "nus_kortnavn",
     "nus2styrk08": "nus",

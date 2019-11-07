@@ -329,7 +329,7 @@ const Visualization = ({
                             ? subItem.data.data.styrk08_navn
                             : subItem.data.data.retning === "nus_kortnavn2styrk08"
                               ? subItem.data.data.styrk08_navn
-                              : subItem.data.data.retning === "uno_id2nus_kort"
+                              : subItem.data.data.retning === "uno_id2nus_kortnavn"
                                 ? subItem.data.data.nus_kortnavn
                                 : subItem.data.data.retning === "nus2styrk08"
                                   ? subItem.data.data.styrk08_navn

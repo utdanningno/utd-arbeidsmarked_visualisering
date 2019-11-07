@@ -97,7 +97,7 @@ const Context2Demo = ({ layout, disaggregation }) => {
   const [nusKortnavn, setNusKortnavn] = useState("all")
 
   useEffect(() => {
-    getData("y_sykepleier", "uno_id2nus_kort")
+    getData("y_sykepleier", "uno_id2nus_kortnavn")
       .then(d => {
         if (d && d.mapping && d.mapping.docs) setKorts(d.mapping.docs)
       })
@@ -236,10 +236,10 @@ const Demo = () => {
         />
       </div>
       <div style={{ width: "25%" }}>
-        <Header title="y_dataingenior" direction="y_* uno_id2nus_kort" />
+        <Header title="y_dataingenior" direction="y_* uno_id2nus_kortnavn" />
         <Context3
           id="y_dataingenior"
-          direction="uno_id2nus_kort"
+          direction="uno_id2nus_kortnavn"
           layout={layout}
           limit={8}
           disaggregateBy={disaggregation ? disaggregation.values : null}
