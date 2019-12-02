@@ -16,12 +16,17 @@ const Context2 = ({
   disaggregateLabels,
   tooltipContent,
   colors = defaultColors,
+  moreLabel,
   missingDataText = "Missing data",
 }) => {
 
   const item = useData(id, direction)
   const { docs } = item ? (item.mapping || {}) : {}
   const dataset = useMemo(() => prepareMore(docs, limit), [docs, limit])
+
+  const customMoreLabel = moreLabel || direction.split("2")[1] === "styrk08"
+    ? "yrkes-kategorier"
+    : "utdannings-kategorier"
 
   return (
     <Fragment>
@@ -37,6 +42,7 @@ const Context2 = ({
           disaggregateBy={disaggregateBy}
           disaggregateLabels={disaggregateLabels}
           tooltipContent={tooltipContent}
+          moreLabel={customMoreLabel}
           colors={colors}
         /> : <MissingData text={missingDataText} />
       }

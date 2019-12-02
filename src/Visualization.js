@@ -14,6 +14,7 @@ const Visualization = ({
   disaggregate = true,
   disaggregateBy = ["antall_kvinner", "antall_menn", "antall_ukjent_kjonn"],
   disaggregateLabels = ["kvinner", "menn", "Ukjent kjonn"],
+  moreLabel = "Mer",
   colors = defaultColors
 }) => {
   const enableTransition = useRef(false);
@@ -438,7 +439,7 @@ const Visualization = ({
                   }}
                 >
                   {moreCount ? `+${moreCount} ` : ""}
-                  {title.replace(/"/g, "")}
+                  {title.replace(/"/g, "") === "Mer" ? moreLabel : title.replace(/"/g, "")}
                 </div>
               </motion.foreignObject>
             </g>
