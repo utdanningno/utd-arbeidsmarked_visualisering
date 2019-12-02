@@ -18,6 +18,8 @@ const Context2 = ({
   colors = defaultColors,
   moreLabel,
   missingDataText = "Missing data",
+  tooltipStyles,
+  tooltipCaretStyles,
 }) => {
 
   const item = useData(id, direction)
@@ -44,6 +46,8 @@ const Context2 = ({
           tooltipContent={tooltipContent}
           moreLabel={customMoreLabel}
           colors={colors}
+          tooltipStyles={tooltipStyles}
+          tooltipCaretStyles={tooltipCaretStyles}
         /> : <MissingData text={missingDataText} />
       }
     </Fragment>
