@@ -15,7 +15,10 @@ const Visualization = ({
   disaggregateBy = ["antall_kvinner", "antall_menn", "antall_ukjent_kjonn"],
   disaggregateLabels = ["kvinner", "menn", "Ukjent kjonn"],
   moreLabel = "Mer",
-  colors = defaultColors
+  colors = defaultColors,
+  tooltipContent,
+  tooltipStyles,
+  tooltipCaretStyles,
 }) => {
   const enableTransition = useRef(false);
   const viz = useRef();
@@ -353,16 +356,16 @@ const Visualization = ({
                 animate={barAnimation2}
                 variants={barVariants2}
                 onMouseEnter={evt => {
+                  const title = subItem.data.data.styrk08_navn || subItem.data.data.tittel
+                  const number = disaggregate && layout === "bars"
+                    ? subItem.data.data[disaggregateBy[1]] + " " + disaggregateLabels[1]
+                    : subItem.data.data.antall_personer + " personer"
                   tooltip.show(evt, {
-                    title:
-                      subItem.data.data.styrk08_navn ||
-                      subItem.data.data.tittel,
-                    number:
-                      disaggregate && layout === "bars"
-                        ? subItem.data.data[disaggregateBy[1]] +
-                          " " +
-                          disaggregateLabels[1]
-                        : subItem.data.data.antall_personer + " personer"
+                    title,
+                    number,
+                    customContent: tooltipContent
+                      ? tooltipContent(title, number)
+                      : null
                   });
                 }}
                 onMouseLeave={evt => tooltip.hide(evt)}
@@ -375,16 +378,14 @@ const Visualization = ({
                 animate={barAnimation3}
                 variants={barVariants3}
                 onMouseEnter={evt => {
+                  const title = subItem.data.data.styrk08_navn || subItem.data.data.tittel
+                  const number = disaggregate && layout === "bars"
+                    ? subItem.data.data[disaggregateBy[2]] + " " + disaggregateLabels[2]
+                    : subItem.data.data.antall_personer + " personer"
                   tooltip.show(evt, {
-                    title:
-                      subItem.data.data.styrk08_navn ||
-                      subItem.data.data.tittel,
-                    number:
-                      disaggregate && layout === "bars"
-                        ? subItem.data.data[disaggregateBy[2]] +
-                          " " +
-                          disaggregateLabels[2]
-                        : subItem.data.data.antall_personer + " personer"
+                    title,
+                    number,
+                    customContent: tooltipContent ? tooltipContent(title, number) : null,
                   });
                 }}
                 onMouseLeave={evt => tooltip.hide(evt)}
@@ -397,22 +398,24 @@ const Visualization = ({
                 animate={barAnimation}
                 variants={barVariants1}
                 onMouseEnter={evt => {
+                  const cleanTitle = title.replace(/"/g, "")
+                  const number = layout === "bars"
+                    ? disaggregate
+                      ? subItem.data.data[disaggregateBy[0]] +
+                        " " +
+                        disaggregateLabels[0]
+                      : subItem.data.data.antall_personer + " personer"
+                    : Math.round(
+                        (100 / subItem.data.data.total) *
+                          subItem.data.data.antall_personer *
+                          10
+                      ) /
+                        10 +
+                      "%"
                   tooltip.show(evt, {
-                    title: title.replace(/"/g, ""),
-                    number:
-                      layout === "bars"
-                        ? disaggregate
-                          ? subItem.data.data[disaggregateBy[0]] +
-                            " " +
-                            disaggregateLabels[0]
-                          : subItem.data.data.antall_personer + " personer"
-                        : Math.round(
-                            (100 / subItem.data.data.total) *
-                              subItem.data.data.antall_personer *
-                              10
-                          ) /
-                            10 +
-                          "%"
+                    title: cleanTitle,
+                    number,
+                    customContent: tooltipContent ? tooltipContent(title, number) : null,
                   });
                 }}
                 onMouseLeave={evt => tooltip.hide(evt)}
@@ -450,6 +453,8 @@ const Visualization = ({
         tooltip={tooltip}
         disaggregate={disaggregate}
         disaggregateBy={disaggregateBy}
+        tooltipStyles={tooltipStyles}
+        tooltipCaretStyles={tooltipCaretStyles}
       />
     </div>
   );

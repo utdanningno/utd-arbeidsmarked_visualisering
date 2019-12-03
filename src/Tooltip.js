@@ -2,7 +2,7 @@
 import React, { Fragment } from "react"
 import PropTypes from "prop-types"
 
-const Tooltip = ({ tooltip }) => {
+const Tooltip = ({ tooltip, tooltipStyles, tooltipCaretStyles }) => {
   return tooltip.item ? (
     <Fragment>
       <div
@@ -22,14 +22,25 @@ const Tooltip = ({ tooltip }) => {
           fontSize: 14,
           overflow: "hidden",
           boxSizing: "border-box",
+          ...tooltipStyles
         }}
       >
-        <span
-          style={{ display: "block", overflow: "hidden" }}
-        >
-          {tooltip.item.title}
-        </span>
-        {tooltip.item.number}
+        {
+          tooltip.item.customContent ? (
+            <Fragment>
+              {tooltip.item.customContent}
+            </Fragment>
+          ) : (
+            <Fragment>
+              <span
+                style={{ display: "block", overflow: "hidden" }}
+              >
+                {tooltip.item.title}
+              </span>
+              {tooltip.item.number}
+            </Fragment>
+          )
+        }
       </div>
       <div
         style={{
@@ -47,6 +58,7 @@ const Tooltip = ({ tooltip }) => {
           borderTop: "0.5rem solid rgba(0,0,0,0.8)",
           borderLeft: "0.5rem solid transparent",
           boxSizing: "border-box",
+          ...tooltipCaretStyles
         }}
       />
     </Fragment>
