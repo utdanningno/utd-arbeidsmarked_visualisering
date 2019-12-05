@@ -39,6 +39,10 @@ You can freely disaggregate data by using the `disaggregateBy` and `disaggregate
 | disaggregateLabels | Array of Strings |                  |
 | colors             | Object           |                  |
 | missingDataText    | String           | `Missing data`   |
+| moreLabel          | String           |                  |
+| tooltipContent     | Function         |                  |
+| toooltipStyles     | Object           |                  |
+| tooltipCaretStyles | Object           |                  |
 
 ### `<Context 3/>`
 
@@ -72,6 +76,10 @@ You can freely disaggregate data by using the `disaggregateBy` and `disaggregate
 | disaggregateLabels | Array of Strings |                  |
 | colors             | Object           |                  |
 | missingDataText    | String           | `Missing data`   |
+| moreLabel          | String           |                  |
+| tooltipContent     | Function         |                  |
+| toooltipStyles     | Object           |                  |
+| tooltipCaretStyles | Object           |                  |
 
 ## Hooks
 
