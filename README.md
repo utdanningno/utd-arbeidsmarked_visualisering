@@ -7,7 +7,9 @@ This module contains the dataviz tool to generate working market bar/tree charts
 
 There's a component for each context. Under the hood they use similar components to render the visualizations. The individual contexts provide a little bit more control in case we need to add more UI elements or built-in disaggregations.
 
-### `<Context2 />`
+### `<Context2 />` Yrkesbeskrivelser 
+
+Visualization suitable for wide display as visualization within the collapsible section on ~500 web pages.
 
 ```jsx
 import { Context2 } from "job-market-visuals"
@@ -44,7 +46,9 @@ You can freely disaggregate data by using the `disaggregateBy` and `disaggregate
 | toooltipStyles     | Object           |                  |
 | tooltipCaretStyles | Object           |                  |
 
-### `<Context 3/>`
+### `<Context 3/>` Minified version within a column in product comparison service 
+
+`<Context 3/>` is optimized for use on [sammenlign.utdanning.no](https://sammenlign.utdanning.no/). 
 
 ```jsx
 import { Context3 } from "job-market-visuals"
@@ -145,18 +149,20 @@ Here is an example of the age disaggregations:
   id="u_bioingeniorfag"
   limit={8}
   disaggregatedBy={["antall_40", "over_40"]}
-  disaggregateLabels={["under 40", "Over 40"]}
+  disaggregateLabels={["under 40 år", "over 40 år"]}
 />
 ```
 
 Here is an example of the experience disaggregations:
+
+Note: The field name `antall_710` is misleading, actually means education competed 4-10 years ago. 
 
 ```jsx
 <Context2
   id="u_bioingeniorfag"
   limit={8}
   disaggregatedBy={["antall_13", "antall_710", "other_experience"]}
-  disaggregateLabels={["1-3 years", "7-10 years", "Other"]}
+  disaggregateLabels={["Fullført utdanning for 1-3 år siden", "Fullført utdanning for 4-10 år siden", "alle"]}
 />
 ```
 
