@@ -2,8 +2,8 @@
 import { useState, useEffect } from "react"
 
 export async function getData(id, direction) {
-  const mainEndpoint = "https://sammenlign.utdanning.no/rest/main"
-  const endpoint = "https://sammenlign.utdanning.no/rest/arbeidsmarked"
+  const mainEndpoint = "https://api.utdanning.no/legacy-sammenligning/main"
+  const endpoint = "https://api.utdanning.no/legacy-sammenligning/arbeidsmarked"
 
   const idNames = {
     "uno_id2nus": "uno_id",
