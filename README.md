@@ -3,6 +3,8 @@
 
 This module contains the dataviz tool to generate working market bar/tree charts for the utdanning.no website.
 
+Developed for utdanning.no by [Lapidus interactive](https://lapidus.se/case-studies) in 2019. 
+
 ## Components
 
 There's a component for each context. Under the hood they use similar components to render the visualizations. The individual contexts provide a little bit more control in case we need to add more UI elements or built-in disaggregations.
