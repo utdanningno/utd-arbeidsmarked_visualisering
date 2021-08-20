@@ -222,6 +222,7 @@ const Demo = () => {
           limit={8}
           disaggregateBy={disaggregation ? disaggregation.values : null}
           disaggregateLabels={disaggregation ? disaggregation.labels : null}
+          moreLabel="Andre yrker"
         />
       </div>
       <div style={{ width: "25%" }}>
@@ -233,6 +234,7 @@ const Demo = () => {
           limit={8}
           disaggregateBy={disaggregation ? disaggregation.values : null}
           disaggregateLabels={disaggregation ? disaggregation.labels : null}
+          moreLabel="Andre yrker"
         />
       </div>
       <div style={{ width: "25%" }}>
@@ -244,6 +246,7 @@ const Demo = () => {
           limit={8}
           disaggregateBy={disaggregation ? disaggregation.values : null}
           disaggregateLabels={disaggregation ? disaggregation.labels : null}
+          moreLabel="Andre yrker"
         />
       </div>
       <div style={{ width: "25%" }}>
@@ -255,6 +258,7 @@ const Demo = () => {
           limit={8}
           disaggregateBy={disaggregation ? disaggregation.values : null}
           disaggregateLabels={disaggregation ? disaggregation.labels : null}
+          moreLabel="Andre yrker"
         />
       </div>
     </div>

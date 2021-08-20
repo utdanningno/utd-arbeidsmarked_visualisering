@@ -350,7 +350,7 @@ const Visualization = ({
               />
 
               <motion.rect
-                rx="0"
+                rx="10"
                 custom={{ subItem, i }}
                 initial="default"
                 animate={barAnimation2}
@@ -372,7 +372,7 @@ const Visualization = ({
               />
 
               <motion.rect
-                rx="0"
+                rx="10"
                 custom={{ subItem, i }}
                 initial="default"
                 animate={barAnimation3}
@@ -392,7 +392,7 @@ const Visualization = ({
               />
 
               <motion.rect
-                rx="0"
+                rx="10"
                 custom={{ subItem, i }}
                 initial="default"
                 animate={barAnimation}

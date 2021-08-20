@@ -450,7 +450,7 @@ var Visualization = function Visualization(_ref) {
             style: { pointerEvents: "none" }
           }),
           React.createElement(motion.rect, {
-            rx: "0",
+            rx: "10",
             custom: { subItem: subItem, i: i },
             initial: "default",
             animate: barAnimation2,
@@ -469,7 +469,7 @@ var Visualization = function Visualization(_ref) {
             }
           }),
           React.createElement(motion.rect, {
-            rx: "0",
+            rx: "10",
             custom: { subItem: subItem, i: i },
             initial: "default",
             animate: barAnimation3,
@@ -488,7 +488,7 @@ var Visualization = function Visualization(_ref) {
             }
           }),
           React.createElement(motion.rect, {
-            rx: "0",
+            rx: "10",
             custom: { subItem: subItem, i: i },
             initial: "default",
             animate: barAnimation,

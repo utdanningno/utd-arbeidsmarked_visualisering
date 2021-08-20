@@ -37,7 +37,9 @@ var Context2 = function Context2(_ref) {
     return prepareMore(docs, limit);
   }, [docs, limit]);
 
-  var customMoreLabel = moreLabel || direction.split("2")[1] === "styrk08" ? "yrkes-kategorier" : "utdannings-kategorier";
+  // const customMoreLabel = moreLabel || direction.split("2")[1] === "styrk08"
+  //   ? "yrkes-kategorier"
+  //   : "utdannings-kategorier"
 
   return React.createElement(
     Fragment,
@@ -52,7 +54,7 @@ var Context2 = function Context2(_ref) {
       disaggregateBy: disaggregateBy,
       disaggregateLabels: disaggregateLabels,
       tooltipContent: tooltipContent,
-      moreLabel: customMoreLabel,
+      moreLabel: moreLabel,
       colors: colors,
       tooltipStyles: tooltipStyles,
       tooltipCaretStyles: tooltipCaretStyles
