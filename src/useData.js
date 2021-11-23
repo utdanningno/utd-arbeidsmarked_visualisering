@@ -1,9 +1,23 @@
 
 import { useState, useEffect } from "react"
 
+function getEndpoint(name) {
+  const host = window.location.host;
+  let domainBase = "";
+  if (host.indexOf("beta") === 0 || host.indexOf("dev") === 0 || host.indexOf("localhost") === 0 ) {
+    domainBase = "beta.";
+  } else if (host.indexOf("alfa") === 0) {
+    domainBase = "alfa.";
+  } 
+  let server = "https://" + domainBase + "api.utdanning.no";
+  let path = "/sammenligning/" + (name ? name : "main");
+  return server + path;
+  
+}
+
 export async function getData(id, direction) {
-  const mainEndpoint = "https://sammenlign.utdanning.no/rest/main"
-  const endpoint = "https://sammenlign.utdanning.no/rest/arbeidsmarked"
+  const mainEndpoint = getEndpoint();
+  const endpoint = getEndpoint("arbeidsmarked");
 
   const idNames = {
     "uno_id2nus": "uno_id",
