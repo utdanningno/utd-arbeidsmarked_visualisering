@@ -1,10 +1,8 @@
-
 import { useEffect, useState } from "react";
-
 export function useTooltip(_ref) {
   var container = _ref.container,
       _ref$width = _ref.width,
-      width = _ref$width === undefined ? 140 : _ref$width;
+      width = _ref$width === void 0 ? 140 : _ref$width;
 
   var _useState = useState(false),
       visible = _useState[0],
@@ -37,9 +35,16 @@ export function useTooltip(_ref) {
     setVisible(false);
   };
 
-  return { visible: visible, position: position, caretPosition: caretPosition, item: item, width: width, show: show, hide: hide };
+  return {
+    visible: visible,
+    position: position,
+    caretPosition: caretPosition,
+    item: item,
+    width: width,
+    show: show,
+    hide: hide
+  };
 }
-
 export var useResize = function useResize(viz, width, setWidth) {
   useEffect(function () {
     var handleResize = function handleResize() {
@@ -47,6 +52,7 @@ export var useResize = function useResize(viz, width, setWidth) {
       if (bbox.width === width) return;
       setWidth(bbox.width);
     };
+
     handleResize();
     window.addEventListener("resize", handleResize);
     return function () {
@@ -54,7 +60,6 @@ export var useResize = function useResize(viz, width, setWidth) {
     };
   }, []);
 };
-
 export var defaultColors = {
   text: "#333",
   textTree: "#333",
@@ -66,7 +71,6 @@ export var defaultColors = {
   selfEmployed: "#ff9800",
   other: "#9e9e9e"
 };
-
 export var getColor = function getColor(id, colors) {
   if (!id) {
     return colors.other;
@@ -82,11 +86,9 @@ export var getColor = function getColor(id, colors) {
     return colors.primary;
   }
 };
-
 export function clamp(num, extent) {
   return Math.min(Math.max(num, extent[0]), extent[1]);
 }
-
 export function prepareMore(docs, limit) {
   if (!docs) return [];
   var more = docs.slice(limit).reduce(function (acc, cur) {
