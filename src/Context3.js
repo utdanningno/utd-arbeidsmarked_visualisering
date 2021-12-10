@@ -1,5 +1,5 @@
 
-import React, { Fragment, useMemo } from "react"
+import React, {Fragment, useCallback, useMemo, useState} from 'react';
 import PropTypes from "prop-types"
 
 import { useData } from "./useData"
@@ -20,13 +20,22 @@ const Context3 = ({
   missingDataText = "Missing data",
 }) => {
 
+  const [usedLimit, setUsedLimit] = useState(limit);
+  const [total, setTotal] = useState();
   const item = useData(id, direction)
   const { docs } = item ? (item.mapping || {}) : {}
-  const dataset = useMemo(() => prepareMore(docs, limit), [docs, limit])
+  const dataset = useMemo(() => prepareMore(docs, usedLimit), [docs, usedLimit])
 
   // const customMoreLabel = moreLabel || direction.split("2")[1] === "styrk08"
   //   ? "yrkes-kategorier"
   //   : "utdannings-kategorier"
+
+  const handleClickMore = useCallback(() => {
+    setUsedLimit(oldLimit => {
+      const newLimit = oldLimit + limit;
+      return (newLimit > docs.length ? docs.length : newLimit);
+    });
+  }, [dataset, total]);
 
   return (
     <Fragment>
@@ -44,6 +53,7 @@ const Context3 = ({
           tooltipContent={tooltipContent}
           moreLabel={moreLabel}
           colors={colors}
+          onClickMore={handleClickMore}
         /> : <MissingData text={missingDataText} />
       }
     </Fragment>

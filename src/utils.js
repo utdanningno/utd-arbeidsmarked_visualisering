@@ -93,7 +93,7 @@ export function prepareMore(docs, limit) {
     return {
       id: "more",
       tittel: "Mer",
-      count: docs.slice(limit).length,
+      count: docs.slice(limit).length || 0,
       antall_personer: (acc.antall_personer || 0) + cur.antall_personer,
       antall_kvinner: (acc.antall_kvinner || 0) + cur.antall_kvinner,
       antall_menn: (acc.antall_menn || 0) + cur.antall_menn,

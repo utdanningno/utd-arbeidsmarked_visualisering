@@ -1,5 +1,5 @@
 
-import React, { Fragment, useMemo } from "react"
+import React, {Fragment, useCallback, useMemo, useState} from 'react';
 import PropTypes from "prop-types"
 
 import { useData } from "./useData"
@@ -22,13 +22,18 @@ const Context2 = ({
   tooltipCaretStyles,
 }) => {
 
+  const [usedLimit, setUsedLimit] = useState(limit);
   const item = useData(id, direction)
   const { docs } = item ? (item.mapping || {}) : {}
-  const dataset = useMemo(() => prepareMore(docs, limit), [docs, limit])
+  const dataset = useMemo(() => prepareMore(docs, usedLimit), [docs, usedLimit])
 
   // const customMoreLabel = moreLabel || direction.split("2")[1] === "styrk08"
   //   ? "yrkes-kategorier"
   //   : "utdannings-kategorier"
+
+  const handleClickMore = useCallback(() => {
+    setUsedLimit(oldLimit => oldLimit + limit);
+  }, []);
 
   return (
     <Fragment>
@@ -48,6 +53,7 @@ const Context2 = ({
           colors={colors}
           tooltipStyles={tooltipStyles}
           tooltipCaretStyles={tooltipCaretStyles}
+          onClickMore={handleClickMore}
         /> : <MissingData text={missingDataText} />
       }
     </Fragment>

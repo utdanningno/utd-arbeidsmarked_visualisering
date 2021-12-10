@@ -19,6 +19,7 @@ const Visualization = ({
   tooltipContent,
   tooltipStyles,
   tooltipCaretStyles,
+  onClickMore,
 }) => {
   const enableTransition = useRef(false);
   const viz = useRef();
@@ -27,8 +28,8 @@ const Visualization = ({
   useResize(viz, width, setWidth);
 
   const count = item.subItems.length;
-  // const height = count * itemHeight;
-  const height = 550;
+  const height = (count + 1) * itemHeight;
+  // const height = 550;
 
   const xScale = scaleLinear()
     .domain([0, max(item.subItems, d => d.antall_personer)])
@@ -322,6 +323,12 @@ const Visualization = ({
 
   const tooltip = useTooltip({ container: viz });
 
+  const handleClickMore = () => {
+    if (onClickMore) {
+      onClickMore();
+    }
+  };
+
   return (
     <div ref={viz} style={{ position: "relative" }}>
       <svg width={width} height={height}>
@@ -339,7 +346,7 @@ const Visualization = ({
                                   ? subItem.data.data.styrk08_navn
                                   : "Mer"
           return (
-            <g key={`subItem-${subItem.data.data.id}`}>
+            <g key={`subItem-${subItem.data.data.id}`} onClick={moreCount ? handleClickMore : null}>
               <motion.rect
                 x={0}
                 y={i * itemHeight}
@@ -442,7 +449,10 @@ const Visualization = ({
                   }}
                 >
                   {moreCount ? `+${moreCount} ` : ""}
-                  {title.replace(/"/g, "") === "Mer" ? moreLabel : title.replace(/"/g, "")}
+                  {title ?
+                    (title.replace(/"/g, "") === "Mer"
+                    ? moreLabel : title.replace(/"/g, ""))
+                    : null}
                 </div>
               </motion.foreignObject>
             </g>
