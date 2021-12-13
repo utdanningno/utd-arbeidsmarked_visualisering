@@ -552,7 +552,7 @@ var Visualization = function Visualization(_ref) {
       onMouseLeave: function onMouseLeave(evt) {
         return tooltip.hide(evt);
       }
-    }), /*#__PURE__*/React.createElement(motion.foreignObject, {
+    }), moreCount && /*#__PURE__*/React.createElement(motion.foreignObject, {
       fontSize: "14",
       alignmentBaseline: "bottom",
       custom: {

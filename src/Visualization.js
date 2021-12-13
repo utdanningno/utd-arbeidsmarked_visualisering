@@ -428,7 +428,7 @@ const Visualization = ({
                 onMouseLeave={evt => tooltip.hide(evt)}
               />
 
-              <motion.foreignObject
+              {moreCount && <motion.foreignObject
                 fontSize="14"
                 alignmentBaseline="bottom"
                 custom={{ subItem, i }}
@@ -454,7 +454,7 @@ const Visualization = ({
                     ? moreLabel : title.replace(/"/g, ""))
                     : null}
                 </div>
-              </motion.foreignObject>
+              </motion.foreignObject>}
             </g>
           );
         })}
