@@ -334,6 +334,7 @@ const Visualization = ({
       <svg width={width} height={height}>
         {datapoints.map((subItem, i) => {
           const moreCount = subItem.data.data.count;
+          console.log(moreCount, subItem.data.data);
           const title = subItem.data.data.retning === "uno_id2nus"
                           ? subItem.data.data.nus_navn
                           : subItem.data.data.retning === "uno_id2styrk08"
@@ -344,7 +345,13 @@ const Visualization = ({
                                 ? subItem.data.data.nus_kortnavn
                                 : subItem.data.data.retning === "nus2styrk08"
                                   ? subItem.data.data.styrk08_navn
-                                  : "Mer"
+                                  : "Mer";
+
+          let hideLabel = false;
+          if (title && title.replace(/"/g, "") === "Mer") {
+            hideLabel = !moreCount;
+          }
+
           return (
             <g key={`subItem-${subItem.data.data.id}`} onClick={moreCount ? handleClickMore : null}>
               <motion.rect
@@ -428,7 +435,7 @@ const Visualization = ({
                 onMouseLeave={evt => tooltip.hide(evt)}
               />
 
-              {moreCount !== 0 && <motion.foreignObject
+              {!hideLabel && <motion.foreignObject
                 fontSize="14"
                 alignmentBaseline="bottom"
                 custom={{ subItem, i }}

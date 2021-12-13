@@ -476,7 +476,14 @@ var Visualization = function Visualization(_ref) {
     height: height
   }, datapoints.map(function (subItem, i) {
     var moreCount = subItem.data.data.count;
+    console.log(moreCount, subItem.data.data);
     var title = subItem.data.data.retning === "uno_id2nus" ? subItem.data.data.nus_navn : subItem.data.data.retning === "uno_id2styrk08" ? subItem.data.data.styrk08_navn : subItem.data.data.retning === "nus_kortnavn2styrk08" ? subItem.data.data.styrk08_navn : subItem.data.data.retning === "uno_id2nus_kortnavn" ? subItem.data.data.nus_kortnavn : subItem.data.data.retning === "nus2styrk08" ? subItem.data.data.styrk08_navn : "Mer";
+    var hideLabel = false;
+
+    if (title && title.replace(/"/g, "") === "Mer") {
+      hideLabel = !moreCount;
+    }
+
     return /*#__PURE__*/React.createElement("g", {
       key: "subItem-" + subItem.data.data.id,
       onClick: moreCount ? handleClickMore : null
@@ -552,7 +559,7 @@ var Visualization = function Visualization(_ref) {
       onMouseLeave: function onMouseLeave(evt) {
         return tooltip.hide(evt);
       }
-    }), moreCount !== 0 && /*#__PURE__*/React.createElement(motion.foreignObject, {
+    }), !hideLabel && /*#__PURE__*/React.createElement(motion.foreignObject, {
       fontSize: "14",
       alignmentBaseline: "bottom",
       custom: {
