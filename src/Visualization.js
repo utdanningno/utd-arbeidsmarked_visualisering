@@ -428,7 +428,7 @@ const Visualization = ({
                 onMouseLeave={evt => tooltip.hide(evt)}
               />
 
-              {moreCount && <motion.foreignObject
+              {moreCount !== 0 && <motion.foreignObject
                 fontSize="14"
                 alignmentBaseline="bottom"
                 custom={{ subItem, i }}
