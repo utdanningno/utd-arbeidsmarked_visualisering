@@ -1,4 +1,4 @@
-import React, { Fragment, useMemo } from "react";
+import React, { Fragment, useCallback, useMemo, useState } from 'react';
 import PropTypes from "prop-types";
 import { useData } from "./useData";
 import { defaultColors, prepareMore } from "./utils";
@@ -24,17 +24,27 @@ var Context2 = function Context2(_ref) {
       missingDataText = _ref$missingDataText === void 0 ? "Missing data" : _ref$missingDataText,
       tooltipStyles = _ref.tooltipStyles,
       tooltipCaretStyles = _ref.tooltipCaretStyles;
+
+  var _useState = useState(limit),
+      usedLimit = _useState[0],
+      setUsedLimit = _useState[1];
+
   var item = useData(id, direction);
 
   var _ref2 = item ? item.mapping || {} : {},
       docs = _ref2.docs;
 
   var dataset = useMemo(function () {
-    return prepareMore(docs, limit);
-  }, [docs, limit]); // const customMoreLabel = moreLabel || direction.split("2")[1] === "styrk08"
+    return prepareMore(docs, usedLimit);
+  }, [docs, usedLimit]); // const customMoreLabel = moreLabel || direction.split("2")[1] === "styrk08"
   //   ? "yrkes-kategorier"
   //   : "utdannings-kategorier"
 
+  var handleClickMore = useCallback(function () {
+    setUsedLimit(function (oldLimit) {
+      return oldLimit + limit;
+    });
+  }, []);
   return /*#__PURE__*/React.createElement(Fragment, null, docs && docs.length ? /*#__PURE__*/React.createElement(Visualization, {
     item: {
       parentId: item.main ? item.main.uno_id : id,
@@ -48,7 +58,8 @@ var Context2 = function Context2(_ref) {
     moreLabel: moreLabel,
     colors: colors,
     tooltipStyles: tooltipStyles,
-    tooltipCaretStyles: tooltipCaretStyles
+    tooltipCaretStyles: tooltipCaretStyles,
+    onClickMore: handleClickMore
   }) : /*#__PURE__*/React.createElement(MissingData, {
     text: missingDataText
   }));

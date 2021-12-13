@@ -33,7 +33,8 @@ var Visualization = function Visualization(_ref) {
       colors = _ref$colors === void 0 ? defaultColors : _ref$colors,
       tooltipContent = _ref.tooltipContent,
       tooltipStyles = _ref.tooltipStyles,
-      tooltipCaretStyles = _ref.tooltipCaretStyles;
+      tooltipCaretStyles = _ref.tooltipCaretStyles,
+      onClickMore = _ref.onClickMore;
   var enableTransition = useRef(false);
   var viz = useRef();
 
@@ -42,9 +43,9 @@ var Visualization = function Visualization(_ref) {
       setWidth = _useState[1];
 
   useResize(viz, width, setWidth);
-  var count = item.subItems.length; // const height = count * itemHeight;
+  var count = item.subItems.length;
+  var height = (count + 1) * itemHeight; // const height = 550;
 
-  var height = 550;
   var xScale = scaleLinear().domain([0, max(item.subItems, function (d) {
     return d.antall_personer;
   })]).range([0, width ? width - 20 : width]);
@@ -458,6 +459,13 @@ var Visualization = function Visualization(_ref) {
   var tooltip = useTooltip({
     container: viz
   });
+
+  var handleClickMore = function handleClickMore() {
+    if (onClickMore) {
+      onClickMore();
+    }
+  };
+
   return /*#__PURE__*/React.createElement("div", {
     ref: viz,
     style: {
@@ -470,7 +478,8 @@ var Visualization = function Visualization(_ref) {
     var moreCount = subItem.data.data.count;
     var title = subItem.data.data.retning === "uno_id2nus" ? subItem.data.data.nus_navn : subItem.data.data.retning === "uno_id2styrk08" ? subItem.data.data.styrk08_navn : subItem.data.data.retning === "nus_kortnavn2styrk08" ? subItem.data.data.styrk08_navn : subItem.data.data.retning === "uno_id2nus_kortnavn" ? subItem.data.data.nus_kortnavn : subItem.data.data.retning === "nus2styrk08" ? subItem.data.data.styrk08_navn : "Mer";
     return /*#__PURE__*/React.createElement("g", {
-      key: "subItem-" + subItem.data.data.id
+      key: "subItem-" + subItem.data.data.id,
+      onClick: moreCount ? handleClickMore : null
     }, /*#__PURE__*/React.createElement(motion.rect, {
       x: 0,
       y: i * itemHeight,
@@ -566,7 +575,7 @@ var Visualization = function Visualization(_ref) {
         color: layout === "bars" ? colors.text : colors.textTree,
         padding: layout === "bars" ? 0 : "0.25rem"
       }
-    }, moreCount ? "+" + moreCount + " " : "", title.replace(/"/g, "") === "Mer" ? moreLabel : title.replace(/"/g, ""))));
+    }, moreCount ? "+" + moreCount + " " : "", title ? title.replace(/"/g, "") === "Mer" ? moreLabel : title.replace(/"/g, "") : null)));
   })), /*#__PURE__*/React.createElement(Tooltip, {
     tooltip: tooltip,
     disaggregate: disaggregate,

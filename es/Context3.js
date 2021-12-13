@@ -1,4 +1,4 @@
-import React, { Fragment, useMemo } from "react";
+import React, { Fragment, useCallback, useMemo, useState } from 'react';
 import PropTypes from "prop-types";
 import { useData } from "./useData";
 import { defaultColors, prepareMore } from "./utils";
@@ -22,17 +22,32 @@ var Context3 = function Context3(_ref) {
       moreLabel = _ref.moreLabel,
       _ref$missingDataText = _ref.missingDataText,
       missingDataText = _ref$missingDataText === void 0 ? "Missing data" : _ref$missingDataText;
+
+  var _useState = useState(limit),
+      usedLimit = _useState[0],
+      setUsedLimit = _useState[1];
+
+  var _useState2 = useState(),
+      total = _useState2[0],
+      setTotal = _useState2[1];
+
   var item = useData(id, direction);
 
   var _ref2 = item ? item.mapping || {} : {},
       docs = _ref2.docs;
 
   var dataset = useMemo(function () {
-    return prepareMore(docs, limit);
-  }, [docs, limit]); // const customMoreLabel = moreLabel || direction.split("2")[1] === "styrk08"
+    return prepareMore(docs, usedLimit);
+  }, [docs, usedLimit]); // const customMoreLabel = moreLabel || direction.split("2")[1] === "styrk08"
   //   ? "yrkes-kategorier"
   //   : "utdannings-kategorier"
 
+  var handleClickMore = useCallback(function () {
+    setUsedLimit(function (oldLimit) {
+      var newLimit = oldLimit + limit;
+      return newLimit > docs.length ? docs.length : newLimit;
+    });
+  }, [dataset, total]);
   return /*#__PURE__*/React.createElement(Fragment, null, docs && docs.length ? /*#__PURE__*/React.createElement(Visualization, {
     item: {
       parentId: item.main.uno_id,
@@ -44,7 +59,8 @@ var Context3 = function Context3(_ref) {
     disaggregateLabels: disaggregateLabels,
     tooltipContent: tooltipContent,
     moreLabel: moreLabel,
-    colors: colors
+    colors: colors,
+    onClickMore: handleClickMore
   }) : /*#__PURE__*/React.createElement(MissingData, {
     text: missingDataText
   }));
