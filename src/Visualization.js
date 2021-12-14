@@ -435,16 +435,15 @@ const Visualization = ({
                 onMouseLeave={evt => tooltip.hide(evt)}
               />
 
-              {!hideLabel && <motion.foreignObject
+              {!hideLabel && <foreignObject
                 fontSize="14"
-                alignmentBaseline="bottom"
-                custom={{ subItem, i }}
-                initial="default"
-                animate={textAnimation}
-                variants={labelVariants}
-                style={{ pointerEvents: "none" }}
+                style={{ pointerEvents: "none", overflow: 'visible', width: '100%', height: '100%' }}
               >
-                <div
+                <motion.div
+                  initial="default"
+                  animate={textAnimation}
+                  variants={labelVariants}
+                  custom={{ subItem, i }}
                   style={{
                     width: "100%",
                     height: "100%",
@@ -460,8 +459,8 @@ const Visualization = ({
                     (title.replace(/"/g, "") === "Mer"
                     ? moreLabel : title.replace(/"/g, ""))
                     : null}
-                </div>
-              </motion.foreignObject>}
+                </motion.div>
+              </foreignObject>}
             </g>
           );
         })}
