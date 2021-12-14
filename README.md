@@ -1,9 +1,10 @@
-
 # Labour market data visualization tools
+
+*Use NVM for supported Node version with `nvm install`.*
 
 This module contains the dataviz tool to generate working market bar/tree charts for the utdanning.no website.
 
-Developed for utdanning.no by [Lapidus interactive](https://lapidus.se/case-studies) in 2019. 
+Developed for utdanning.no by [Lapidus interactive](https://lapidus.se/case-studies) in 2019.
 
 ## Components
 
