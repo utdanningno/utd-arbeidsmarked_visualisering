@@ -559,20 +559,22 @@ var Visualization = function Visualization(_ref) {
       onMouseLeave: function onMouseLeave(evt) {
         return tooltip.hide(evt);
       }
-    }), !hideLabel && /*#__PURE__*/React.createElement(motion.foreignObject, {
+    }), !hideLabel && /*#__PURE__*/React.createElement("foreignObject", {
       fontSize: "14",
-      alignmentBaseline: "bottom",
+      style: {
+        pointerEvents: "none",
+        overflow: 'visible',
+        width: '100%',
+        height: '100%'
+      }
+    }, /*#__PURE__*/React.createElement(motion.div, {
+      initial: "default",
+      animate: textAnimation,
+      variants: labelVariants,
       custom: {
         subItem: subItem,
         i: i
       },
-      initial: "default",
-      animate: textAnimation,
-      variants: labelVariants,
-      style: {
-        pointerEvents: "none"
-      }
-    }, /*#__PURE__*/React.createElement("div", {
       style: {
         width: "100%",
         height: "100%",
