@@ -334,7 +334,6 @@ const Visualization = ({
       <svg width={width} height={height}>
         {datapoints.map((subItem, i) => {
           const moreCount = subItem.data.data.count;
-          console.log(moreCount, subItem.data.data);
           const title = subItem.data.data.retning === "uno_id2nus"
                           ? subItem.data.data.nus_navn
                           : subItem.data.data.retning === "uno_id2styrk08"
