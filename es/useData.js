@@ -78,7 +78,7 @@ function _getData() {
             }
 
             _context.next = 17;
-            return fetch(mainEndpoint + "?uno_id=" + id);
+            return fetch(mainEndpoint + "?uno_id=" + id + "&vis_alt=true");
 
           case 17:
             _context.next = 19;

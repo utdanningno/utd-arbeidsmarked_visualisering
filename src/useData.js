@@ -30,14 +30,14 @@ export async function getData(id, direction) {
   /**
    * 1. Load data from mapping endpoint
    */
-  const url = `${endpoint}?${idNames[direction]}=${id}&retning=${direction}`
+  const url = `${endpoint}?${idNames[direction]}=${id}&retning=${direction}&vis_alt=true`
   const mapping = direction ? await(await fetch(url)).json() : null
 
   /**
    * 2. Load data from main endpoint
    */
   const main = (id.slice(0,2) === "y_" || id.slice(0,2) === "u_")
-    ? await(await fetch(`${mainEndpoint}?uno_id=${id}`)).json()
+    ? await(await fetch(`${mainEndpoint}?uno_id=${id}&vis_alt=true`)).json()
     : null
   
   /**
