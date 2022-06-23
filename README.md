@@ -1,4 +1,3 @@
-
 # Labour market data visualization tools
 
 This module contains the dataviz tool to generate working market bar/tree charts for the utdanning.no website.
