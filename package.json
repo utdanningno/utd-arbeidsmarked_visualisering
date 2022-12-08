@@ -20,7 +20,7 @@
     "test:watch": "nwb test-react --server"
   },
   "dependencies": {
-    "d3": "^5.9.7",
+    "d3": "^7.7.0",
     "framer-motion": "^4.1.0",
     "react-select": "^5.1.0"
   },
