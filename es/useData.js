@@ -47,7 +47,7 @@ function _getData() {
              * 1. Load data from mapping endpoint
              */
 
-            url = endpoint + "?" + idNames[direction] + "=" + id + "&retning=" + direction;
+            url = endpoint + "?" + idNames[direction] + "=" + id + "&retning=" + direction + "&vis_alt=true";
 
             if (!direction) {
               _context.next = 12;
