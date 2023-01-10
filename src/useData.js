@@ -1,23 +1,9 @@
 
 import { useState, useEffect } from "react"
 
-function getEndpoint(name) {
-  const host = window.location.host;
-  let domainBase = "";
-  if (host.indexOf("beta") === 0 || host.indexOf("dev") === 0 || host.indexOf("localhost") === 0 ) {
-    domainBase = "beta.";
-  } else if (host.indexOf("alfa") === 0) {
-    domainBase = "alfa.";
-  } 
-  let server = "https://" + domainBase + "api.utdanning.no";
-  let path = "/sammenligning/" + (name ? name : "main");
-  return server + path;
-  
-}
-
-export async function getData(id, direction) {
-  const mainEndpoint = getEndpoint();
-  const endpoint = getEndpoint("arbeidsmarked");
+export async function getData(id, direction, api_url = 'https://api.utdanning.no') {
+  const mainEndpoint = api_url + '/sammenligning/main';
+  const endpoint = api_url + '/sammenligning/arbeidsmarked';
 
   const idNames = {
     "uno_id2nus": "uno_id",
@@ -56,7 +42,7 @@ export async function getData(id, direction) {
   return { main: main ? main[id] : null, mapping: mappingData }
 }
 
-export function useData(unoId = "y_sykepleier", direction = "utdanning2yrke") {
+export function useData(unoId = "y_sykepleier", direction = "utdanning2yrke", api_url) {
   const [item, setItem] = useState()
   useEffect(() => {
     getData(unoId, direction).then(data => {
