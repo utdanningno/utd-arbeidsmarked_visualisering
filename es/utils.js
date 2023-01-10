@@ -1,25 +1,20 @@
 import { useEffect, useState } from "react";
 export function useTooltip(_ref) {
   var container = _ref.container,
-      _ref$width = _ref.width,
-      width = _ref$width === void 0 ? 140 : _ref$width;
-
+    _ref$width = _ref.width,
+    width = _ref$width === void 0 ? 140 : _ref$width;
   var _useState = useState(false),
-      visible = _useState[0],
-      setVisible = _useState[1];
-
+    visible = _useState[0],
+    setVisible = _useState[1];
   var _useState2 = useState([0, 0]),
-      position = _useState2[0],
-      setPosition = _useState2[1];
-
+    position = _useState2[0],
+    setPosition = _useState2[1];
   var _useState3 = useState([0, 0]),
-      caretPosition = _useState3[0],
-      setCaretPosition = _useState3[1];
-
+    caretPosition = _useState3[0],
+    setCaretPosition = _useState3[1];
   var _useState4 = useState(),
-      item = _useState4[0],
-      setItem = _useState4[1];
-
+    item = _useState4[0],
+    setItem = _useState4[1];
   var show = function show(evt, subItem) {
     var containerBox = container.current.getBoundingClientRect();
     var targetBox = evt.target.getBoundingClientRect();
@@ -30,11 +25,9 @@ export function useTooltip(_ref) {
     setPosition([clamp(targetBox.left + targetBox.width / 2, extent), targetBox.top]);
     setCaretPosition([clamp(targetBox.left + targetBox.width / 2, extent2), targetBox.top]);
   };
-
   var hide = function hide() {
     setVisible(false);
   };
-
   return {
     visible: visible,
     position: position,
@@ -52,7 +45,6 @@ export var useResize = function useResize(viz, width, setWidth) {
       if (bbox.width === width) return;
       setWidth(bbox.width);
     };
-
     handleResize();
     window.addEventListener("resize", handleResize);
     return function () {

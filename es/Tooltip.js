@@ -1,12 +1,10 @@
-function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
-
+function _extends() { _extends = Object.assign ? Object.assign.bind() : function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 import React, { Fragment } from "react";
 import PropTypes from "prop-types";
-
 var Tooltip = function Tooltip(_ref) {
   var tooltip = _ref.tooltip,
-      tooltipStyles = _ref.tooltipStyles,
-      tooltipCaretStyles = _ref.tooltipCaretStyles;
+    tooltipStyles = _ref.tooltipStyles,
+    tooltipCaretStyles = _ref.tooltipCaretStyles;
   return tooltip.item ? /*#__PURE__*/React.createElement(Fragment, null, /*#__PURE__*/React.createElement("div", {
     style: _extends({
       display: tooltip.visible ? "block" : "none",
@@ -49,7 +47,6 @@ var Tooltip = function Tooltip(_ref) {
     }, tooltipCaretStyles)
   })) : null;
 };
-
 Tooltip.propTypes = process.env.NODE_ENV !== "production" ? {
   tooltip: PropTypes.object
 } : {};
