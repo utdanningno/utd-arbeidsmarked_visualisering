@@ -388,7 +388,8 @@ var Visualization2 = function Visualization2(_ref) {
         textOverflow: "ellipsis",
         whiteSpace: "nowrap",
         color: layout === "bars" ? colors.text : colors.textTree,
-        padding: layout === "bars" ? 0 : "0.25rem"
+        padding: layout === "bars" ? 0 : "0.25rem",
+        lineHeight: "initial"
       }
     }, title ? title.replace(/"/g, "") === "Annet" ? moreLabel : title.replace(/"/g, "") : null, /*#__PURE__*/React.createElement("span", {
       style: {
@@ -399,7 +400,8 @@ var Visualization2 = function Visualization2(_ref) {
       style: {
         textAlign: "right",
         marginRight: "-10px",
-        lineHeight: "20px"
+        lineHeight: "20px",
+        marginTop: 'revert'
       }
     }, Math.round(subItem.data.data.size / subItem.data.data.total * 100), " %"))));
   })));
