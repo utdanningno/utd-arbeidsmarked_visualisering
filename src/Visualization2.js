@@ -313,7 +313,8 @@ const Visualization2 = ({
                     textOverflow: "ellipsis",
                     whiteSpace: "nowrap",
                     color: layout === "bars" ? colors.text : colors.textTree,
-                    padding: layout === "bars" ? 0 : "0.25rem"
+                    padding: layout === "bars" ? 0 : "0.25rem",
+                    lineHeight: "initial"
                   }}
                 >
 
@@ -322,7 +323,7 @@ const Visualization2 = ({
                     ? moreLabel : title.replace(/"/g, ""))
                     : null}
                   <span style={{float: "right", marginRight: "-20px"}}>{((subItem.data.data.size).toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")) } personer </span>
-                  <p style={{textAlign: "right", marginRight: "-10px", lineHeight: "20px"}}>{Math.round((subItem.data.data.size / subItem.data.data.total)*100)} %</p>
+                  <p style={{textAlign: "right", marginRight: "-10px", lineHeight: "20px", marginTop: 'revert'}}>{Math.round((subItem.data.data.size / subItem.data.data.total)*100)} %</p>
                 </motion.div>
               </foreignObject>}
             </g>
