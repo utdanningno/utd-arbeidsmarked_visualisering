@@ -4,7 +4,7 @@ import PropTypes from "prop-types"
 
 import { useData } from "./useData"
 import { defaultColors, prepareMore } from "./utils"
-import Visualization from "./Visualization"
+import Visualization2 from "./Visualization2"
 import MissingData from "./MissingData"
 
 const Context2 = ({
@@ -40,7 +40,7 @@ const Context2 = ({
     <Fragment>
       {
         (docs && docs.length) ?
-        <Visualization
+        <Visualization2
           item={{
             parentId: item.main ? item.main.uno_id : id,
             subItems: dataset,

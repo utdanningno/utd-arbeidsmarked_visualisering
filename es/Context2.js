@@ -2,7 +2,7 @@ import React, { Fragment, useCallback, useMemo, useState } from 'react';
 import PropTypes from "prop-types";
 import { useData } from "./useData";
 import { defaultColors, prepareMore } from "./utils";
-import Visualization from "./Visualization";
+import Visualization2 from "./Visualization2";
 import MissingData from "./MissingData";
 var Context2 = function Context2(_ref) {
   var _ref$id = _ref.id,
@@ -44,7 +44,7 @@ var Context2 = function Context2(_ref) {
       return oldLimit + limit;
     });
   }, []);
-  return /*#__PURE__*/React.createElement(Fragment, null, docs && docs.length ? /*#__PURE__*/React.createElement(Visualization, {
+  return /*#__PURE__*/React.createElement(Fragment, null, docs && docs.length ? /*#__PURE__*/React.createElement(Visualization2, {
     item: {
       parentId: item.main ? item.main.uno_id : id,
       subItems: dataset
