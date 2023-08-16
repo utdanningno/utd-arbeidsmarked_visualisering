@@ -22,7 +22,8 @@ function _getData() {
             "uno_id2nus_kortnavn": "uno_id",
             "uno_id2styrk08": "uno_id",
             "nus_kortnavn2styrk08": "nus_kortnavn",
-            "nus2styrk08": "nus"
+            "nus2styrk08": "nus",
+            "styrk082nus": "styrk08"
           };
           /**
            * 1. Load data from mapping endpoint

@@ -69,6 +69,7 @@ Context2.propTypes = {
     "uno_id2styrk08",
     "nus_kortnavn2styrk08",
     "nus2styrk08",
+    "styrk082nus",
   ]),
   limit: PropTypes.number,
   disaggregateBy: PropTypes.arrayOf(PropTypes.string),

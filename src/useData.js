@@ -11,6 +11,7 @@ export async function getData(id, direction, api_url = 'https://api.utdanning.no
     "uno_id2styrk08": "uno_id",
     "nus_kortnavn2styrk08": "nus_kortnavn",
     "nus2styrk08": "nus",
+    "styrk082nus": "styrk08",
   }
 
   /**

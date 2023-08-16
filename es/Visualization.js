@@ -448,7 +448,7 @@ var Visualization = function Visualization(_ref) {
     height: height
   }, datapoints.map(function (subItem, i) {
     var moreCount = subItem.data.data.count;
-    var title = subItem.data.data.retning === "uno_id2nus" ? subItem.data.data.nus_navn : subItem.data.data.retning === "uno_id2styrk08" ? subItem.data.data.styrk08_navn : subItem.data.data.retning === "nus_kortnavn2styrk08" ? subItem.data.data.styrk08_navn : subItem.data.data.retning === "uno_id2nus_kortnavn" ? subItem.data.data.nus_kortnavn : subItem.data.data.retning === "nus2styrk08" ? subItem.data.data.styrk08_navn : "Mer";
+    var title = subItem.data.data.retning === "uno_id2nus" ? subItem.data.data.nus_navn : subItem.data.data.retning === "uno_id2styrk08" ? subItem.data.data.styrk08_navn : subItem.data.data.retning === "nus_kortnavn2styrk08" ? subItem.data.data.styrk08_navn : subItem.data.data.retning === "uno_id2nus_kortnavn" ? subItem.data.data.nus_kortnavn : subItem.data.data.retning === "nus2styrk08" ? subItem.data.data.styrk08_navn : subItem.data.data.retning === "styrk082nus" ? subItem.data.data.nus_navn : "Mer";
     var hideLabel = false;
     if (title && title.replace(/"/g, "") === "Mer") {
       hideLabel = !moreCount;

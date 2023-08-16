@@ -65,7 +65,7 @@ var Context2 = function Context2(_ref) {
 };
 Context2.propTypes = process.env.NODE_ENV !== "production" ? {
   id: PropTypes.string,
-  direction: PropTypes.oneOf(["uno_id2nus", "uno_id2nus_kortnavn", "uno_id2styrk08", "nus_kortnavn2styrk08", "nus2styrk08"]),
+  direction: PropTypes.oneOf(["uno_id2nus", "uno_id2nus_kortnavn", "uno_id2styrk08", "nus_kortnavn2styrk08", "nus2styrk08", "styrk082nus"]),
   limit: PropTypes.number,
   disaggregateBy: PropTypes.arrayOf(PropTypes.string),
   disaggregateLabels: PropTypes.arrayOf(PropTypes.string),

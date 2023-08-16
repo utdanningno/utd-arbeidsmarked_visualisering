@@ -344,7 +344,9 @@ const Visualization = ({
                                 ? subItem.data.data.nus_kortnavn
                                 : subItem.data.data.retning === "nus2styrk08"
                                   ? subItem.data.data.styrk08_navn
-                                  : "Mer";
+                                    : subItem.data.data.retning === "styrk082nus"
+                                      ? subItem.data.data.nus_navn
+                                      : "Mer";
 
           let hideLabel = false;
           if (title && title.replace(/"/g, "") === "Mer") {
