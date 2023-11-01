@@ -299,6 +299,20 @@ const Visualization2 = ({
                 style={moreCount ? {cursor: "pointer"} : {}}
               />
 
+              {moreCount && <>
+                <motion.circle
+                    r={14}
+                    cx={(subItem.data.data.size / subItem.data.data.total) * width / 2}
+                    cy={i * itemHeight + itemHeight / 2 + 20}
+                    fill="none"
+                    stroke="#5a5a5a"
+                    strokeWidth={2}
+                />
+                <motion.g transform={`translate(${(subItem.data.data.size / subItem.data.data.total) * width / 2}, ${i * itemHeight + itemHeight / 2 + 20})`}>
+                  <motion.path d="M -8 -4 L 0 4 L 8 -4" fill="none" stroke="#5a5a5a" strokeWidth={2} />
+                </motion.g>
+              </>}
+
               {!hideLabel && <foreignObject
                 fontSize={mobileView ? "16" : "20"}
                 style={{ pointerEvents: "none", overflow: 'visible', width: '100%', height: '100%' }}
