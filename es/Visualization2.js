@@ -365,7 +365,21 @@ var Visualization2 = function Visualization2(_ref) {
       style: moreCount ? {
         cursor: "pointer"
       } : {}
-    }), !hideLabel && /*#__PURE__*/React.createElement("foreignObject", {
+    }), moreCount && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(motion.circle, {
+      r: 14,
+      cx: subItem.data.data.size / subItem.data.data.total * width / 2,
+      cy: i * itemHeight + itemHeight / 2 + 20,
+      fill: "none",
+      stroke: "#5a5a5a",
+      strokeWidth: 2
+    }), /*#__PURE__*/React.createElement(motion.g, {
+      transform: "translate(" + subItem.data.data.size / subItem.data.data.total * width / 2 + ", " + (i * itemHeight + itemHeight / 2 + 20) + ")"
+    }, /*#__PURE__*/React.createElement(motion.path, {
+      d: "M -8 -4 L 0 4 L 8 -4",
+      fill: "none",
+      stroke: "#5a5a5a",
+      strokeWidth: 2
+    }))), !hideLabel && /*#__PURE__*/React.createElement("foreignObject", {
       fontSize: mobileView ? "16" : "20",
       style: {
         pointerEvents: "none",
