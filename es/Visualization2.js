@@ -32,7 +32,8 @@ var Visualization2 = function Visualization2(_ref) {
   var mobileView = window.innerWidth <= 500;
   useResize(viz, width, setWidth);
   var count = item.subItems.length;
-  var height = (count + 1) * itemHeight;
+  // const height = (count + 1) * itemHeight;
+  var height = count * itemHeight;
   var xScale = scaleLinear().domain([0, max(item.subItems, function (d) {
     return d.antall_personer;
   })]).range([0, width ? width - 20 : width]);
