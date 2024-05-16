@@ -24,7 +24,8 @@ const Visualization2 = ({
   useResize(viz, width, setWidth);
 
   const count = item.subItems.length;
-  const height = (count + 1) * itemHeight;
+  // const height = (count + 1) * itemHeight;
+  const height = count * itemHeight;
 
   const xScale = scaleLinear()
     .domain([0, max(item.subItems, d => d.antall_personer)])
