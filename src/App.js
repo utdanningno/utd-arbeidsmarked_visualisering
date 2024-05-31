@@ -124,7 +124,7 @@ const Context2Demo = ({ layout, disaggregation }) => {
             <option value="all">{ "All" }</option>
             {
               korts.map(d => {
-                const name = d.nus_kortnavn.replace(/"/g, "")
+                const name = d.nus_kortnavn?.replace(/"/g, "") ?? "" ;
                 return <option key={d.id} value={name}>{name}</option>
               })
             }
