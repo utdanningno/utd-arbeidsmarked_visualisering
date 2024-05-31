@@ -13,6 +13,9 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "build:lib:cjs": "babel src --out-dir lib --presets @babel/preset-env,@babel/preset-react --ignore 'src/index.js,src/App.js'",
+    "build:lib:esm": "babel src --out-dir es --presets @babel/preset-env,@babel/preset-react --ignore 'src/index.js,src/App.js' --plugins @babel/plugin-transform-modules-commonjs",
+    "build:lib": "npm run build:lib:cjs && npm run build:lib:esm",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -51,6 +54,10 @@
     ]
   },
   "devDependencies": {
-    "@babel/plugin-proposal-private-property-in-object": "^7.21.11"
+    "@babel/cli": "^7.24.6",
+    "@babel/core": "^7.24.6",
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "@babel/preset-env": "^7.24.6",
+    "@babel/preset-react": "^7.24.6"
   }
 }
