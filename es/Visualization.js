@@ -1,157 +1,107 @@
-function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ _regeneratorRuntime = function _regeneratorRuntime() { return exports; }; var exports = {}, Op = Object.prototype, hasOwn = Op.hasOwnProperty, defineProperty = Object.defineProperty || function (obj, key, desc) { obj[key] = desc.value; }, $Symbol = "function" == typeof Symbol ? Symbol : {}, iteratorSymbol = $Symbol.iterator || "@@iterator", asyncIteratorSymbol = $Symbol.asyncIterator || "@@asyncIterator", toStringTagSymbol = $Symbol.toStringTag || "@@toStringTag"; function define(obj, key, value) { return Object.defineProperty(obj, key, { value: value, enumerable: !0, configurable: !0, writable: !0 }), obj[key]; } try { define({}, ""); } catch (err) { define = function define(obj, key, value) { return obj[key] = value; }; } function wrap(innerFn, outerFn, self, tryLocsList) { var protoGenerator = outerFn && outerFn.prototype instanceof Generator ? outerFn : Generator, generator = Object.create(protoGenerator.prototype), context = new Context(tryLocsList || []); return defineProperty(generator, "_invoke", { value: makeInvokeMethod(innerFn, self, context) }), generator; } function tryCatch(fn, obj, arg) { try { return { type: "normal", arg: fn.call(obj, arg) }; } catch (err) { return { type: "throw", arg: err }; } } exports.wrap = wrap; var ContinueSentinel = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} var IteratorPrototype = {}; define(IteratorPrototype, iteratorSymbol, function () { return this; }); var getProto = Object.getPrototypeOf, NativeIteratorPrototype = getProto && getProto(getProto(values([]))); NativeIteratorPrototype && NativeIteratorPrototype !== Op && hasOwn.call(NativeIteratorPrototype, iteratorSymbol) && (IteratorPrototype = NativeIteratorPrototype); var Gp = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(IteratorPrototype); function defineIteratorMethods(prototype) { ["next", "throw", "return"].forEach(function (method) { define(prototype, method, function (arg) { return this._invoke(method, arg); }); }); } function AsyncIterator(generator, PromiseImpl) { function invoke(method, arg, resolve, reject) { var record = tryCatch(generator[method], generator, arg); if ("throw" !== record.type) { var result = record.arg, value = result.value; return value && "object" == typeof value && hasOwn.call(value, "__await") ? PromiseImpl.resolve(value.__await).then(function (value) { invoke("next", value, resolve, reject); }, function (err) { invoke("throw", err, resolve, reject); }) : PromiseImpl.resolve(value).then(function (unwrapped) { result.value = unwrapped, resolve(result); }, function (error) { return invoke("throw", error, resolve, reject); }); } reject(record.arg); } var previousPromise; defineProperty(this, "_invoke", { value: function value(method, arg) { function callInvokeWithMethodAndArg() { return new PromiseImpl(function (resolve, reject) { invoke(method, arg, resolve, reject); }); } return previousPromise = previousPromise ? previousPromise.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg(); } }); } function makeInvokeMethod(innerFn, self, context) { var state = "suspendedStart"; return function (method, arg) { if ("executing" === state) throw new Error("Generator is already running"); if ("completed" === state) { if ("throw" === method) throw arg; return doneResult(); } for (context.method = method, context.arg = arg;;) { var delegate = context.delegate; if (delegate) { var delegateResult = maybeInvokeDelegate(delegate, context); if (delegateResult) { if (delegateResult === ContinueSentinel) continue; return delegateResult; } } if ("next" === context.method) context.sent = context._sent = context.arg;else if ("throw" === context.method) { if ("suspendedStart" === state) throw state = "completed", context.arg; context.dispatchException(context.arg); } else "return" === context.method && context.abrupt("return", context.arg); state = "executing"; var record = tryCatch(innerFn, self, context); if ("normal" === record.type) { if (state = context.done ? "completed" : "suspendedYield", record.arg === ContinueSentinel) continue; return { value: record.arg, done: context.done }; } "throw" === record.type && (state = "completed", context.method = "throw", context.arg = record.arg); } }; } function maybeInvokeDelegate(delegate, context) { var methodName = context.method, method = delegate.iterator[methodName]; if (undefined === method) return context.delegate = null, "throw" === methodName && delegate.iterator["return"] && (context.method = "return", context.arg = undefined, maybeInvokeDelegate(delegate, context), "throw" === context.method) || "return" !== methodName && (context.method = "throw", context.arg = new TypeError("The iterator does not provide a '" + methodName + "' method")), ContinueSentinel; var record = tryCatch(method, delegate.iterator, context.arg); if ("throw" === record.type) return context.method = "throw", context.arg = record.arg, context.delegate = null, ContinueSentinel; var info = record.arg; return info ? info.done ? (context[delegate.resultName] = info.value, context.next = delegate.nextLoc, "return" !== context.method && (context.method = "next", context.arg = undefined), context.delegate = null, ContinueSentinel) : info : (context.method = "throw", context.arg = new TypeError("iterator result is not an object"), context.delegate = null, ContinueSentinel); } function pushTryEntry(locs) { var entry = { tryLoc: locs[0] }; 1 in locs && (entry.catchLoc = locs[1]), 2 in locs && (entry.finallyLoc = locs[2], entry.afterLoc = locs[3]), this.tryEntries.push(entry); } function resetTryEntry(entry) { var record = entry.completion || {}; record.type = "normal", delete record.arg, entry.completion = record; } function Context(tryLocsList) { this.tryEntries = [{ tryLoc: "root" }], tryLocsList.forEach(pushTryEntry, this), this.reset(!0); } function values(iterable) { if (iterable) { var iteratorMethod = iterable[iteratorSymbol]; if (iteratorMethod) return iteratorMethod.call(iterable); if ("function" == typeof iterable.next) return iterable; if (!isNaN(iterable.length)) { var i = -1, next = function next() { for (; ++i < iterable.length;) if (hasOwn.call(iterable, i)) return next.value = iterable[i], next.done = !1, next; return next.value = undefined, next.done = !0, next; }; return next.next = next; } } return { next: doneResult }; } function doneResult() { return { value: undefined, done: !0 }; } return GeneratorFunction.prototype = GeneratorFunctionPrototype, defineProperty(Gp, "constructor", { value: GeneratorFunctionPrototype, configurable: !0 }), defineProperty(GeneratorFunctionPrototype, "constructor", { value: GeneratorFunction, configurable: !0 }), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, toStringTagSymbol, "GeneratorFunction"), exports.isGeneratorFunction = function (genFun) { var ctor = "function" == typeof genFun && genFun.constructor; return !!ctor && (ctor === GeneratorFunction || "GeneratorFunction" === (ctor.displayName || ctor.name)); }, exports.mark = function (genFun) { return Object.setPrototypeOf ? Object.setPrototypeOf(genFun, GeneratorFunctionPrototype) : (genFun.__proto__ = GeneratorFunctionPrototype, define(genFun, toStringTagSymbol, "GeneratorFunction")), genFun.prototype = Object.create(Gp), genFun; }, exports.awrap = function (arg) { return { __await: arg }; }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, asyncIteratorSymbol, function () { return this; }), exports.AsyncIterator = AsyncIterator, exports.async = function (innerFn, outerFn, self, tryLocsList, PromiseImpl) { void 0 === PromiseImpl && (PromiseImpl = Promise); var iter = new AsyncIterator(wrap(innerFn, outerFn, self, tryLocsList), PromiseImpl); return exports.isGeneratorFunction(outerFn) ? iter : iter.next().then(function (result) { return result.done ? result.value : iter.next(); }); }, defineIteratorMethods(Gp), define(Gp, toStringTagSymbol, "Generator"), define(Gp, iteratorSymbol, function () { return this; }), define(Gp, "toString", function () { return "[object Generator]"; }), exports.keys = function (val) { var object = Object(val), keys = []; for (var key in object) keys.push(key); return keys.reverse(), function next() { for (; keys.length;) { var key = keys.pop(); if (key in object) return next.value = key, next.done = !1, next; } return next.done = !0, next; }; }, exports.values = values, Context.prototype = { constructor: Context, reset: function reset(skipTempReset) { if (this.prev = 0, this.next = 0, this.sent = this._sent = undefined, this.done = !1, this.delegate = null, this.method = "next", this.arg = undefined, this.tryEntries.forEach(resetTryEntry), !skipTempReset) for (var name in this) "t" === name.charAt(0) && hasOwn.call(this, name) && !isNaN(+name.slice(1)) && (this[name] = undefined); }, stop: function stop() { this.done = !0; var rootRecord = this.tryEntries[0].completion; if ("throw" === rootRecord.type) throw rootRecord.arg; return this.rval; }, dispatchException: function dispatchException(exception) { if (this.done) throw exception; var context = this; function handle(loc, caught) { return record.type = "throw", record.arg = exception, context.next = loc, caught && (context.method = "next", context.arg = undefined), !!caught; } for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i], record = entry.completion; if ("root" === entry.tryLoc) return handle("end"); if (entry.tryLoc <= this.prev) { var hasCatch = hasOwn.call(entry, "catchLoc"), hasFinally = hasOwn.call(entry, "finallyLoc"); if (hasCatch && hasFinally) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } else if (hasCatch) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); } else { if (!hasFinally) throw new Error("try statement without catch or finally"); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } } } }, abrupt: function abrupt(type, arg) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc <= this.prev && hasOwn.call(entry, "finallyLoc") && this.prev < entry.finallyLoc) { var finallyEntry = entry; break; } } finallyEntry && ("break" === type || "continue" === type) && finallyEntry.tryLoc <= arg && arg <= finallyEntry.finallyLoc && (finallyEntry = null); var record = finallyEntry ? finallyEntry.completion : {}; return record.type = type, record.arg = arg, finallyEntry ? (this.method = "next", this.next = finallyEntry.finallyLoc, ContinueSentinel) : this.complete(record); }, complete: function complete(record, afterLoc) { if ("throw" === record.type) throw record.arg; return "break" === record.type || "continue" === record.type ? this.next = record.arg : "return" === record.type ? (this.rval = this.arg = record.arg, this.method = "return", this.next = "end") : "normal" === record.type && afterLoc && (this.next = afterLoc), ContinueSentinel; }, finish: function finish(finallyLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.finallyLoc === finallyLoc) return this.complete(entry.completion, entry.afterLoc), resetTryEntry(entry), ContinueSentinel; } }, "catch": function _catch(tryLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc === tryLoc) { var record = entry.completion; if ("throw" === record.type) { var thrown = record.arg; resetTryEntry(entry); } return thrown; } } throw new Error("illegal catch attempt"); }, delegateYield: function delegateYield(iterable, resultName, nextLoc) { return this.delegate = { iterator: values(iterable), resultName: resultName, nextLoc: nextLoc }, "next" === this.method && (this.arg = undefined), ContinueSentinel; } }, exports; }
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-function _extends() { _extends = Object.assign ? Object.assign.bind() : function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
-import React, { useState, useRef, useMemo, useEffect } from "react";
-import PropTypes from "prop-types";
-import { scaleLinear, max, treemap, hierarchy, stratify } from "d3";
-import { motion, useAnimation } from "framer-motion";
-import { useTooltip, useResize, defaultColors, getColor } from "./utils";
-import Tooltip from "./Tooltip";
-var Visualization = function Visualization(_ref) {
-  var item = _ref.item,
-    _ref$itemHeight = _ref.itemHeight,
-    itemHeight = _ref$itemHeight === void 0 ? 54 : _ref$itemHeight,
-    _ref$layout = _ref.layout,
-    layout = _ref$layout === void 0 ? "bars" : _ref$layout,
-    _ref$treeGutter = _ref.treeGutter,
-    treeGutter = _ref$treeGutter === void 0 ? 1 : _ref$treeGutter,
-    _ref$disaggregate = _ref.disaggregate,
-    disaggregate = _ref$disaggregate === void 0 ? true : _ref$disaggregate,
-    _ref$disaggregateBy = _ref.disaggregateBy,
-    disaggregateBy = _ref$disaggregateBy === void 0 ? ["antall_kvinner", "antall_menn", "antall_ukjent_kjonn"] : _ref$disaggregateBy,
-    _ref$disaggregateLabe = _ref.disaggregateLabels,
-    disaggregateLabels = _ref$disaggregateLabe === void 0 ? ["kvinner", "menn", "Ukjent kjonn"] : _ref$disaggregateLabe,
-    _ref$moreLabel = _ref.moreLabel,
-    moreLabel = _ref$moreLabel === void 0 ? "Mer" : _ref$moreLabel,
-    _ref$colors = _ref.colors,
-    colors = _ref$colors === void 0 ? defaultColors : _ref$colors,
-    tooltipContent = _ref.tooltipContent,
-    tooltipStyles = _ref.tooltipStyles,
-    tooltipCaretStyles = _ref.tooltipCaretStyles,
-    onClickMore = _ref.onClickMore;
-  var enableTransition = useRef(false);
-  var viz = useRef();
-  var _useState = useState(0),
-    width = _useState[0],
-    setWidth = _useState[1];
-  useResize(viz, width, setWidth);
-  var count = item.subItems.length;
-  var height = (count + 1) * itemHeight;
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var _react = _interopRequireWildcard(require("react"));
+var _propTypes = _interopRequireDefault(require("prop-types"));
+var _d = require("d3");
+var _framerMotion = require("framer-motion");
+var _utils = require("./utils");
+var _Tooltip = _interopRequireDefault(require("./Tooltip"));
+function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
+function _getRequireWildcardCache(e) { if ("function" != typeof WeakMap) return null; var r = new WeakMap(), t = new WeakMap(); return (_getRequireWildcardCache = function (e) { return e ? t : r; })(e); }
+function _interopRequireWildcard(e, r) { if (!r && e && e.__esModule) return e; if (null === e || "object" != typeof e && "function" != typeof e) return { default: e }; var t = _getRequireWildcardCache(r); if (t && t.has(e)) return t.get(e); var n = { __proto__: null }, a = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var u in e) if ("default" !== u && {}.hasOwnProperty.call(e, u)) { var i = a ? Object.getOwnPropertyDescriptor(e, u) : null; i && (i.get || i.set) ? Object.defineProperty(n, u, i) : n[u] = e[u]; } return n.default = e, t && t.set(e, n), n; }
+const Visualization = _ref => {
+  let {
+    item,
+    itemHeight = 54,
+    layout = "bars",
+    treeGutter = 1,
+    disaggregate = true,
+    disaggregateBy = ["antall_kvinner", "antall_menn", "antall_ukjent_kjonn"],
+    disaggregateLabels = ["kvinner", "menn", "Ukjent kjonn"],
+    moreLabel = "Mer",
+    colors = _utils.defaultColors,
+    tooltipContent,
+    tooltipStyles,
+    tooltipCaretStyles,
+    onClickMore
+  } = _ref;
+  const enableTransition = (0, _react.useRef)(false);
+  const viz = (0, _react.useRef)();
+  const [width, setWidth] = (0, _react.useState)(0);
+  (0, _utils.useResize)(viz, width, setWidth);
+  const count = item.subItems.length;
+  const height = (count + 1) * itemHeight;
   // const height = 550;
 
-  var xScale = scaleLinear().domain([0, max(item.subItems, function (d) {
-    return d.antall_personer;
-  })]).range([0, width ? width - 20 : width]);
-  var datapoints = useMemo(function () {
+  const xScale = (0, _d.scaleLinear)().domain([0, (0, _d.max)(item.subItems, d => d.antall_personer)]).range([0, width ? width - 20 : width]);
+  const datapoints = (0, _react.useMemo)(() => {
     if (!width) return [];
-    var sum = item.subItems.reduce(function (acc, cur) {
+    const sum = item.subItems.reduce((acc, cur) => {
       if (cur.antall_personer) return acc + cur.antall_personer;else return acc + 0;
     }, 0);
-    var treeData = item.subItems.map(function (cur) {
-      return _extends({}, cur, {
-        parent: item.parentId,
-        size: +cur.antall_personer,
-        total: +sum
-      });
-    }).concat([{
+    const treeData = item.subItems.map(cur => ({
+      ...cur,
+      parent: item.parentId,
+      size: +cur.antall_personer,
+      total: +sum
+    })).concat([{
       id: item.parentId,
       parent: "",
       antall_personer: +sum
     }]);
-    var vLayout = treemap().size([width - treeGutter * 2, height - treeGutter * 2]).padding(treeGutter);
-    var hierarchicalStructure = stratify().id(function (d) {
-      return d.id;
-    }).parentId(function (d) {
-      return d.parent;
-    })(treeData);
-    var vRoot = hierarchy(hierarchicalStructure).sum(function (d) {
-      return d.data.size;
-    });
-    var vNodes = vRoot.leaves();
+    const vLayout = (0, _d.treemap)().size([width - treeGutter * 2, height - treeGutter * 2]).padding(treeGutter);
+    const hierarchicalStructure = (0, _d.stratify)().id(d => d.id).parentId(d => d.parent)(treeData);
+    const vRoot = (0, _d.hierarchy)(hierarchicalStructure).sum(d => d.data.size);
+    const vNodes = vRoot.leaves();
     vLayout(vRoot);
     return vNodes;
   }, [item.subItems, itemHeight, treeGutter, width]);
-  var barAnimation = useAnimation();
-  var barAnimation2 = useAnimation();
-  var barAnimation3 = useAnimation();
-  var textAnimation = useAnimation();
-  var layoutChangeSequence = /*#__PURE__*/function () {
-    var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
-      var isBar;
-      return _regeneratorRuntime().wrap(function _callee$(_context) {
-        while (1) switch (_context.prev = _context.next) {
-          case 0:
-            isBar = layout === "bars";
-            _context.next = 3;
-            return textAnimation.start("isHidden");
-          case 3:
-            _context.next = 5;
-            return textAnimation.start(isBar ? "isBarPre" : "isTreePre");
-          case 5:
-            if (!isBar) {
-              _context.next = 16;
-              break;
-            }
-            _context.next = 8;
-            return barAnimation.start("isBar");
-          case 8:
-            if (!disaggregate) {
-              _context.next = 11;
-              break;
-            }
-            _context.next = 11;
-            return Promise.all([barAnimation.start(disaggregate ? "isBarDisaggregated" : "isBar", {
-              delay: 0,
-              duration: 0.2
-            }), barAnimation2.start(disaggregate ? "isBarDisaggregated" : "isBar", {
-              delay: 0,
-              duration: 0.2
-            }), barAnimation3.start(disaggregate ? "isBarDisaggregated" : "isBar", {
-              delay: 0,
-              duration: 0.2
-            })]);
-          case 11:
-            _context.next = 13;
-            return textAnimation.start("isVisibleBar");
-          case 13:
-            return _context.abrupt("return", _context.sent);
-          case 16:
-            if (!disaggregate) {
-              _context.next = 19;
-              break;
-            }
-            _context.next = 19;
-            return Promise.all([barAnimation.start("isBar", {
-              delay: 0,
-              duration: 0.2
-            }), barAnimation2.start("isTree", {
-              delay: 0,
-              duration: 0.2
-            }), barAnimation3.start("isTree", {
-              delay: 0,
-              duration: 0.2
-            })]);
-          case 19:
-            _context.next = 21;
-            return barAnimation.start("isTree");
-          case 21:
-            _context.next = 23;
-            return textAnimation.start("isVisibleTree");
-          case 23:
-            return _context.abrupt("return", _context.sent);
-          case 24:
-          case "end":
-            return _context.stop();
-        }
-      }, _callee);
-    }));
-    return function layoutChangeSequence() {
-      return _ref2.apply(this, arguments);
-    };
-  }();
-  var widthChangeSequence = function widthChangeSequence() {
-    var isBar = layout === "bars";
+  const barAnimation = (0, _framerMotion.useAnimation)();
+  const barAnimation2 = (0, _framerMotion.useAnimation)();
+  const barAnimation3 = (0, _framerMotion.useAnimation)();
+  const textAnimation = (0, _framerMotion.useAnimation)();
+  const layoutChangeSequence = async () => {
+    const isBar = layout === "bars";
+    await textAnimation.start("isHidden");
+    await textAnimation.start(isBar ? "isBarPre" : "isTreePre");
+    if (isBar) {
+      await barAnimation.start("isBar");
+      if (disaggregate) {
+        await Promise.all([barAnimation.start(disaggregate ? "isBarDisaggregated" : "isBar", {
+          delay: 0,
+          duration: 0.2
+        }), barAnimation2.start(disaggregate ? "isBarDisaggregated" : "isBar", {
+          delay: 0,
+          duration: 0.2
+        }), barAnimation3.start(disaggregate ? "isBarDisaggregated" : "isBar", {
+          delay: 0,
+          duration: 0.2
+        })]);
+      }
+      return await textAnimation.start("isVisibleBar");
+    } else {
+      if (disaggregate) {
+        await Promise.all([barAnimation.start("isBar", {
+          delay: 0,
+          duration: 0.2
+        }), barAnimation2.start("isTree", {
+          delay: 0,
+          duration: 0.2
+        }), barAnimation3.start("isTree", {
+          delay: 0,
+          duration: 0.2
+        })]);
+      }
+      await barAnimation.start("isTree");
+      return await textAnimation.start("isVisibleTree");
+    }
+  };
+  const widthChangeSequence = () => {
+    const isBar = layout === "bars";
     textAnimation.start(isBar ? "isBarPre" : "isTreePre", {
       duration: 0.1
     });
@@ -168,9 +118,11 @@ var Visualization = function Visualization(_ref) {
       duration: 0.1
     });
   };
-  var labelVariants = {
-    "default": function _default(_ref3) {
-      var i = _ref3.i;
+  const labelVariants = {
+    default: _ref2 => {
+      let {
+        i
+      } = _ref2;
       return {
         x: 10,
         y: i * itemHeight,
@@ -185,8 +137,10 @@ var Visualization = function Visualization(_ref) {
         duration: 0.001
       }
     },
-    isTreePre: function isTreePre(_ref4) {
-      var subItem = _ref4.subItem;
+    isTreePre: _ref3 => {
+      let {
+        subItem
+      } = _ref3;
       return {
         x: subItem.x0,
         y: subItem.y0,
@@ -197,8 +151,10 @@ var Visualization = function Visualization(_ref) {
         }
       };
     },
-    isBarPre: function isBarPre(_ref5) {
-      var i = _ref5.i;
+    isBarPre: _ref4 => {
+      let {
+        i
+      } = _ref4;
       return {
         x: 10,
         y: i * itemHeight,
@@ -209,8 +165,10 @@ var Visualization = function Visualization(_ref) {
         }
       };
     },
-    isVisibleTree: function isVisibleTree(_ref6) {
-      var subItem = _ref6.subItem;
+    isVisibleTree: _ref5 => {
+      let {
+        subItem
+      } = _ref5;
       return {
         opacity: subItem.x1 - subItem.x0 > 80 && subItem.y1 - subItem.y0 > 20 ? 1 : 0,
         transition: {
@@ -218,8 +176,10 @@ var Visualization = function Visualization(_ref) {
         }
       };
     },
-    isVisibleBar: function isVisibleBar(_ref7) {
-      var i = _ref7.i;
+    isVisibleBar: _ref6 => {
+      let {
+        i
+      } = _ref6;
       return {
         opacity: 1,
         transition: {
@@ -229,9 +189,11 @@ var Visualization = function Visualization(_ref) {
       };
     }
   };
-  var barVariants1 = {
-    "default": function _default(_ref8) {
-      var i = _ref8.i;
+  const barVariants1 = {
+    default: _ref7 => {
+      let {
+        i
+      } = _ref7;
       return {
         x: 10,
         y: i * itemHeight + itemHeight / 2,
@@ -240,24 +202,28 @@ var Visualization = function Visualization(_ref) {
         fill: colors.primary
       };
     },
-    isBar: function isBar(_ref9) {
-      var subItem = _ref9.subItem,
-        i = _ref9.i;
+    isBar: _ref8 => {
+      let {
+        subItem,
+        i
+      } = _ref8;
       return {
         x: 10,
         y: i * itemHeight + itemHeight / 2,
         width: xScale(subItem.data.data.antall_personer || 0),
         height: 20,
-        fill: getColor(subItem.data.data.styrk08 || subItem.data.data.nus_navn, colors),
+        fill: (0, _utils.getColor)(subItem.data.data.styrk08 || subItem.data.data.nus_navn, colors),
         transition: {
           delay: i * 0.05,
           duration: 0.25
         }
       };
     },
-    isBarDisaggregated: function isBarDisaggregated(_ref10) {
-      var subItem = _ref10.subItem,
-        i = _ref10.i;
+    isBarDisaggregated: _ref9 => {
+      let {
+        subItem,
+        i
+      } = _ref9;
       return {
         x: 10,
         y: i * itemHeight + itemHeight / 2,
@@ -269,15 +235,17 @@ var Visualization = function Visualization(_ref) {
         fill: colors.disaggregations[0]
       };
     },
-    isTree: function isTree(_ref11) {
-      var subItem = _ref11.subItem,
-        i = _ref11.i;
+    isTree: _ref10 => {
+      let {
+        subItem,
+        i
+      } = _ref10;
       return {
         x: subItem.x0,
         y: subItem.y0,
         width: subItem.x1 - subItem.x0,
         height: subItem.y1 - subItem.y0,
-        fill: getColor(subItem.data.data.styrk08 || subItem.data.data.nus_navn, colors),
+        fill: (0, _utils.getColor)(subItem.data.data.styrk08 || subItem.data.data.nus_navn, colors),
         transition: {
           delay: (item.subItems.length - i) * 0.05,
           duration: 0.25
@@ -285,9 +253,11 @@ var Visualization = function Visualization(_ref) {
       };
     }
   };
-  var barVariants2 = {
-    "default": function _default(_ref12) {
-      var i = _ref12.i;
+  const barVariants2 = {
+    default: _ref11 => {
+      let {
+        i
+      } = _ref11;
       return {
         x: 10,
         y: i * itemHeight + itemHeight / 2,
@@ -296,9 +266,11 @@ var Visualization = function Visualization(_ref) {
         fill: colors.primary
       };
     },
-    isBar: function isBar(_ref13) {
-      var subItem = _ref13.subItem,
-        i = _ref13.i;
+    isBar: _ref12 => {
+      let {
+        subItem,
+        i
+      } = _ref12;
       return {
         x: xScale(subItem.data.data.antall_personer) + 10,
         y: i * itemHeight + itemHeight / 2,
@@ -310,9 +282,11 @@ var Visualization = function Visualization(_ref) {
         fill: colors.primary
       };
     },
-    isBarDisaggregated: function isBarDisaggregated(_ref14) {
-      var subItem = _ref14.subItem,
-        i = _ref14.i;
+    isBarDisaggregated: _ref13 => {
+      let {
+        subItem,
+        i
+      } = _ref13;
       return {
         x: xScale(subItem.data.data[disaggregateBy[0]] || 0) + 10,
         y: i * itemHeight + itemHeight / 2,
@@ -323,9 +297,11 @@ var Visualization = function Visualization(_ref) {
         fill: colors.disaggregations[1]
       };
     },
-    isTree: function isTree(_ref15) {
-      var subItem = _ref15.subItem,
-        i = _ref15.i;
+    isTree: _ref14 => {
+      let {
+        subItem,
+        i
+      } = _ref14;
       return {
         width: 0,
         x: xScale(subItem.data.data.antall_personer) + 10,
@@ -338,9 +314,11 @@ var Visualization = function Visualization(_ref) {
       };
     }
   };
-  var barVariants3 = {
-    "default": function _default(_ref16) {
-      var i = _ref16.i;
+  const barVariants3 = {
+    default: _ref15 => {
+      let {
+        i
+      } = _ref15;
       return {
         x: 10,
         y: i * itemHeight + itemHeight / 2,
@@ -349,9 +327,11 @@ var Visualization = function Visualization(_ref) {
         fill: colors.primary
       };
     },
-    isBar: function isBar(_ref17) {
-      var subItem = _ref17.subItem,
-        i = _ref17.i;
+    isBar: _ref16 => {
+      let {
+        subItem,
+        i
+      } = _ref16;
       return {
         x: xScale(subItem.data.data.antall_personer) + 10,
         y: i * itemHeight + itemHeight / 2,
@@ -363,9 +343,11 @@ var Visualization = function Visualization(_ref) {
         fill: colors.primary
       };
     },
-    isBarDisaggregated: function isBarDisaggregated(_ref18) {
-      var subItem = _ref18.subItem,
-        i = _ref18.i;
+    isBarDisaggregated: _ref17 => {
+      let {
+        subItem,
+        i
+      } = _ref17;
       return {
         x: xScale(subItem.data.data[disaggregateBy[0]] + subItem.data.data[disaggregateBy[1]] || 0) + 10,
         y: i * itemHeight + itemHeight / 2,
@@ -376,9 +358,11 @@ var Visualization = function Visualization(_ref) {
         fill: colors.disaggregations[2]
       };
     },
-    isTree: function isTree(_ref19) {
-      var subItem = _ref19.subItem,
-        i = _ref19.i;
+    isTree: _ref18 => {
+      let {
+        subItem,
+        i
+      } = _ref18;
       return {
         width: 0,
         x: xScale(subItem.data.data.antall_personer) + 10,
@@ -391,16 +375,16 @@ var Visualization = function Visualization(_ref) {
       };
     }
   };
-  useEffect(function () {
+  (0, _react.useEffect)(() => {
     if (!width) return;
     widthChangeSequence();
     enableTransition.current = true;
   }, [width, item.subItems]);
-  useEffect(function () {
+  (0, _react.useEffect)(() => {
     if (!enableTransition.current) return;
     layoutChangeSequence();
   }, [layout]);
-  useEffect(function () {
+  (0, _react.useEffect)(() => {
     if (layout === "tree") return;
     if (disaggregate) {
       barAnimation.start("isBarDisaggregated", {
@@ -430,33 +414,33 @@ var Visualization = function Visualization(_ref) {
       });
     }
   }, [disaggregate, disaggregateBy]);
-  var tooltip = useTooltip({
+  const tooltip = (0, _utils.useTooltip)({
     container: viz
   });
-  var handleClickMore = function handleClickMore() {
+  const handleClickMore = () => {
     if (onClickMore) {
       onClickMore();
     }
   };
-  return /*#__PURE__*/React.createElement("div", {
+  return /*#__PURE__*/_react.default.createElement("div", {
     ref: viz,
     style: {
       position: "relative"
     }
-  }, /*#__PURE__*/React.createElement("svg", {
+  }, /*#__PURE__*/_react.default.createElement("svg", {
     width: width,
     height: height
-  }, datapoints.map(function (subItem, i) {
-    var moreCount = subItem.data.data.count;
-    var title = subItem.data.data.retning === "uno_id2nus" ? subItem.data.data.nus_navn : subItem.data.data.retning === "uno_id2styrk08" ? subItem.data.data.styrk08_navn : subItem.data.data.retning === "nus_kortnavn2styrk08" ? subItem.data.data.styrk08_navn : subItem.data.data.retning === "uno_id2nus_kortnavn" ? subItem.data.data.nus_kortnavn : subItem.data.data.retning === "nus2styrk08" ? subItem.data.data.styrk08_navn : subItem.data.data.retning === "styrk082nus" ? subItem.data.data.nus_navn : "Mer";
-    var hideLabel = false;
+  }, datapoints.map((subItem, i) => {
+    const moreCount = subItem.data.data.count;
+    const title = subItem.data.data.retning === "uno_id2nus" ? subItem.data.data.nus_navn : subItem.data.data.retning === "uno_id2styrk08" ? subItem.data.data.styrk08_navn : subItem.data.data.retning === "nus_kortnavn2styrk08" ? subItem.data.data.styrk08_navn : subItem.data.data.retning === "uno_id2nus_kortnavn" ? subItem.data.data.nus_kortnavn : subItem.data.data.retning === "nus2styrk08" ? subItem.data.data.styrk08_navn : subItem.data.data.retning === "styrk082nus" ? subItem.data.data.nus_navn : "Mer";
+    let hideLabel = false;
     if (title && title.replace(/"/g, "") === "Mer") {
       hideLabel = !moreCount;
     }
-    return /*#__PURE__*/React.createElement("g", {
-      key: "subItem-" + subItem.data.data.id,
+    return /*#__PURE__*/_react.default.createElement("g", {
+      key: "subItem-".concat(subItem.data.data.id),
       onClick: moreCount ? handleClickMore : null
-    }, /*#__PURE__*/React.createElement(motion.rect, {
+    }, /*#__PURE__*/_react.default.createElement(_framerMotion.motion.rect, {
       x: 0,
       y: i * itemHeight,
       width: width,
@@ -465,70 +449,64 @@ var Visualization = function Visualization(_ref) {
       style: {
         pointerEvents: "none"
       }
-    }), /*#__PURE__*/React.createElement(motion.rect, {
+    }), /*#__PURE__*/_react.default.createElement(_framerMotion.motion.rect, {
       rx: "10",
       custom: {
-        subItem: subItem,
-        i: i
+        subItem,
+        i
       },
       initial: "default",
       animate: barAnimation2,
       variants: barVariants2,
-      onMouseEnter: function onMouseEnter(evt) {
-        var title = subItem.data.data.styrk08_navn || subItem.data.data.tittel;
-        var number = disaggregate && layout === "bars" ? subItem.data.data[disaggregateBy[1]] + " " + disaggregateLabels[1] : subItem.data.data.antall_personer + " personer";
+      onMouseEnter: evt => {
+        const title = subItem.data.data.styrk08_navn || subItem.data.data.tittel;
+        const number = disaggregate && layout === "bars" ? subItem.data.data[disaggregateBy[1]] + " " + disaggregateLabels[1] : subItem.data.data.antall_personer + " personer";
         tooltip.show(evt, {
-          title: title,
-          number: number,
+          title,
+          number,
           customContent: tooltipContent ? tooltipContent(title, number) : null
         });
       },
-      onMouseLeave: function onMouseLeave(evt) {
-        return tooltip.hide(evt);
-      }
-    }), /*#__PURE__*/React.createElement(motion.rect, {
+      onMouseLeave: evt => tooltip.hide(evt)
+    }), /*#__PURE__*/_react.default.createElement(_framerMotion.motion.rect, {
       rx: "10",
       custom: {
-        subItem: subItem,
-        i: i
+        subItem,
+        i
       },
       initial: "default",
       animate: barAnimation3,
       variants: barVariants3,
-      onMouseEnter: function onMouseEnter(evt) {
-        var title = subItem.data.data.styrk08_navn || subItem.data.data.tittel;
-        var number = disaggregate && layout === "bars" ? subItem.data.data[disaggregateBy[2]] + " " + disaggregateLabels[2] : subItem.data.data.antall_personer + " personer";
+      onMouseEnter: evt => {
+        const title = subItem.data.data.styrk08_navn || subItem.data.data.tittel;
+        const number = disaggregate && layout === "bars" ? subItem.data.data[disaggregateBy[2]] + " " + disaggregateLabels[2] : subItem.data.data.antall_personer + " personer";
         tooltip.show(evt, {
-          title: title,
-          number: number,
+          title,
+          number,
           customContent: tooltipContent ? tooltipContent(title, number) : null
         });
       },
-      onMouseLeave: function onMouseLeave(evt) {
-        return tooltip.hide(evt);
-      }
-    }), /*#__PURE__*/React.createElement(motion.rect, {
+      onMouseLeave: evt => tooltip.hide(evt)
+    }), /*#__PURE__*/_react.default.createElement(_framerMotion.motion.rect, {
       rx: "10",
       custom: {
-        subItem: subItem,
-        i: i
+        subItem,
+        i
       },
       initial: "default",
       animate: barAnimation,
       variants: barVariants1,
-      onMouseEnter: function onMouseEnter(evt) {
-        var cleanTitle = title.replace(/"/g, "");
-        var number = layout === "bars" ? disaggregate ? subItem.data.data[disaggregateBy[0]] + " " + disaggregateLabels[0] : subItem.data.data.antall_personer + " personer" : Math.round(100 / subItem.data.data.total * subItem.data.data.antall_personer * 10) / 10 + "%";
+      onMouseEnter: evt => {
+        const cleanTitle = title.replace(/"/g, "");
+        const number = layout === "bars" ? disaggregate ? subItem.data.data[disaggregateBy[0]] + " " + disaggregateLabels[0] : subItem.data.data.antall_personer + " personer" : Math.round(100 / subItem.data.data.total * subItem.data.data.antall_personer * 10) / 10 + "%";
         tooltip.show(evt, {
           title: cleanTitle,
-          number: number,
+          number,
           customContent: tooltipContent ? tooltipContent(title, number) : null
         });
       },
-      onMouseLeave: function onMouseLeave(evt) {
-        return tooltip.hide(evt);
-      }
-    }), !hideLabel && /*#__PURE__*/React.createElement("foreignObject", {
+      onMouseLeave: evt => tooltip.hide(evt)
+    }), !hideLabel && /*#__PURE__*/_react.default.createElement("foreignObject", {
       fontSize: "14",
       style: {
         pointerEvents: "none",
@@ -536,13 +514,13 @@ var Visualization = function Visualization(_ref) {
         width: '100%',
         height: '100%'
       }
-    }, /*#__PURE__*/React.createElement(motion.div, {
+    }, /*#__PURE__*/_react.default.createElement(_framerMotion.motion.div, {
       initial: "default",
       animate: textAnimation,
       variants: labelVariants,
       custom: {
-        subItem: subItem,
-        i: i
+        subItem,
+        i
       },
       style: {
         width: "100%",
@@ -553,8 +531,8 @@ var Visualization = function Visualization(_ref) {
         color: layout === "bars" ? colors.text : colors.textTree,
         padding: layout === "bars" ? 0 : "0.25rem"
       }
-    }, moreCount ? "+" + moreCount + " " : "", title ? title.replace(/"/g, "") === "Mer" ? moreLabel : title.replace(/"/g, "") : null)));
-  })), /*#__PURE__*/React.createElement(Tooltip, {
+    }, moreCount ? "+".concat(moreCount, " ") : "", title ? title.replace(/"/g, "") === "Mer" ? moreLabel : title.replace(/"/g, "") : null)));
+  })), /*#__PURE__*/_react.default.createElement(_Tooltip.default, {
     tooltip: tooltip,
     disaggregate: disaggregate,
     disaggregateBy: disaggregateBy,
@@ -562,14 +540,14 @@ var Visualization = function Visualization(_ref) {
     tooltipCaretStyles: tooltipCaretStyles
   }));
 };
-Visualization.propTypes = process.env.NODE_ENV !== "production" ? {
-  item: PropTypes.object,
-  itemHeight: PropTypes.number,
-  layout: PropTypes.oneOf(["bars", "tree"]),
-  treeGutter: PropTypes.number,
-  disaggregate: PropTypes.bool,
-  disaggregateBy: PropTypes.arrayOf(PropTypes.string),
-  disaggregateLabels: PropTypes.arrayOf(PropTypes.string),
-  colors: PropTypes.object
-} : {};
-export default Visualization;
+Visualization.propTypes = {
+  item: _propTypes.default.object,
+  itemHeight: _propTypes.default.number,
+  layout: _propTypes.default.oneOf(["bars", "tree"]),
+  treeGutter: _propTypes.default.number,
+  disaggregate: _propTypes.default.bool,
+  disaggregateBy: _propTypes.default.arrayOf(_propTypes.default.string),
+  disaggregateLabels: _propTypes.default.arrayOf(_propTypes.default.string),
+  colors: _propTypes.default.object
+};
+var _default = exports.default = Visualization;

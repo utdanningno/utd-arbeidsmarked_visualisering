@@ -11,26 +11,28 @@
     "umd"
   ],
   "scripts": {
-    "build": "nwb build-react-component",
-    "clean": "nwb clean-module && nwb clean-demo",
-    "prepublishOnly": "npm run build",
-    "start": "nwb serve-react-demo",
-    "test": "nwb test-react",
-    "test:coverage": "nwb test-react --coverage",
-    "test:watch": "nwb test-react --server"
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "build:lib:cjs": "babel src --out-dir lib --presets @babel/preset-env,@babel/preset-react --ignore 'src/index.js,src/App.js'",
+    "build:lib:esm": "babel src --out-dir es --presets @babel/preset-env,@babel/preset-react --ignore 'src/index.js,src/App.js' --plugins @babel/plugin-transform-modules-commonjs",
+    "build:lib": "npm run build:lib:cjs && npm run build:lib:esm",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
   },
   "dependencies": {
     "d3": "^7.7.0",
     "framer-motion": "^4.1.0",
+    "nth-check": "^2.1.1",
+    "react": "^17.0.0 || ^18.0.0",
+    "react-dom": "^18.2.0",
+    "react-scripts": "5.0.1",
     "react-select": "^5.1.0"
   },
   "peerDependencies": {
     "react": "^17.0.0 || ^18.0.0"
   },
-  "devDependencies": {
-    "nwb": "^0.25.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+  "overrides": {
+    "nth-check": "$nth-check"
   },
   "author": "",
   "homepage": "",
@@ -38,5 +40,24 @@
   "repository": "",
   "keywords": [
     "react-component"
-  ]
+  ],
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.24.6",
+    "@babel/core": "^7.24.6",
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "@babel/preset-env": "^7.24.6",
+    "@babel/preset-react": "^7.24.6"
+  }
 }
