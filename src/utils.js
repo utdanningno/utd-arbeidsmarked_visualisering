@@ -35,6 +35,10 @@ export function useTooltip({
   return { visible, position, caretPosition, item, width, show, hide }
 }
 
+//let observer = new IntersectionObserver(handleResize);
+//observer.observe(viz);
+
+
 export const useResize = (viz, width, setWidth) => {
   useEffect(() => {
     const handleResize = () => {
@@ -44,6 +48,9 @@ export const useResize = (viz, width, setWidth) => {
     }
     handleResize()
     window.addEventListener("resize", handleResize)
+    let observer = new IntersectionObserver(handleResize);
+    console.log(viz);
+    observer.observe(viz.current);
     return () => {
       window.removeEventListener("resize", handleResize)
     }
