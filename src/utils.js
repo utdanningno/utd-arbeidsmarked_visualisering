@@ -49,7 +49,6 @@ export const useResize = (viz, width, setWidth) => {
     handleResize()
     window.addEventListener("resize", handleResize)
     let observer = new IntersectionObserver(handleResize);
-    console.log(viz);
     observer.observe(viz.current);
     return () => {
       window.removeEventListener("resize", handleResize)
