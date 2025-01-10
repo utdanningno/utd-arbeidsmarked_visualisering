@@ -1,6 +1,6 @@
 {
   "name": "job-market-visuals",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "job-market-visuals React component",
   "main": "lib/index.js",
   "module": "es/index.js",
