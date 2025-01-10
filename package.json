@@ -1,5 +1,5 @@
 {
-  "name": "job-market-visuals",
+  "name": "@utdanningno/job-market-visuals",
   "version": "2.1.1",
   "description": "job-market-visuals React component",
   "main": "lib/index.js",
