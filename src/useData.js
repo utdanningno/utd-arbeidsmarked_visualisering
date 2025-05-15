@@ -55,7 +55,7 @@ export function useData(
 ) {
   const [item, setItem] = useState();
   useEffect(() => {
-    getData(unoId, direction).then((data) => {
+    getData(unoId, direction, api_url).then((data) => {
       setItem(data);
     });
   }, [unoId, direction]);
