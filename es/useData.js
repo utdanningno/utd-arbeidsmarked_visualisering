@@ -1,70 +1,18 @@
-'use strict';
+"use strict";
 
-Object.defineProperty(exports, '__esModule', {
-  value: true,
+Object.defineProperty(exports, "__esModule", {
+  value: true
 });
 exports.getData = getData;
 exports.useData = useData;
-var _react = require('react');
-function ownKeys(e, r) {
-  var t = Object.keys(e);
-  if (Object.getOwnPropertySymbols) {
-    var o = Object.getOwnPropertySymbols(e);
-    r &&
-      (o = o.filter(function (r) {
-        return Object.getOwnPropertyDescriptor(e, r).enumerable;
-      })),
-      t.push.apply(t, o);
-  }
-  return t;
-}
-function _objectSpread(e) {
-  for (var r = 1; r < arguments.length; r++) {
-    var t = null != arguments[r] ? arguments[r] : {};
-    r % 2
-      ? ownKeys(Object(t), !0).forEach(function (r) {
-          _defineProperty(e, r, t[r]);
-        })
-      : Object.getOwnPropertyDescriptors
-      ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t))
-      : ownKeys(Object(t)).forEach(function (r) {
-          Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r));
-        });
-  }
-  return e;
-}
-function _defineProperty(e, r, t) {
-  return (
-    (r = _toPropertyKey(r)) in e
-      ? Object.defineProperty(e, r, {
-          value: t,
-          enumerable: !0,
-          configurable: !0,
-          writable: !0,
-        })
-      : (e[r] = t),
-    e
-  );
-}
-function _toPropertyKey(t) {
-  var i = _toPrimitive(t, 'string');
-  return 'symbol' == typeof i ? i : i + '';
-}
-function _toPrimitive(t, r) {
-  if ('object' != typeof t || !t) return t;
-  var e = t[Symbol.toPrimitive];
-  if (void 0 !== e) {
-    var i = e.call(t, r || 'default');
-    if ('object' != typeof i) return i;
-    throw new TypeError('@@toPrimitive must return a primitive value.');
-  }
-  return ('string' === r ? String : Number)(t);
-}
+var _react = require("react");
+function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == typeof i ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != typeof t || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != typeof i) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
 async function getData(id, direction) {
-  let api_url =
-    arguments.length > 2 && arguments[2] !== undefined
-      ? arguments[2]
-      : 'https://v3.api.utdanning.no';
+  let api_url = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 'https://v3.api.utdanning.no';
   const mainEndpoint = api_url + '/sammenligning/main';
   const endpoint = api_url + '/sammenligning/arbeidsmarked';
   const idNames = {
@@ -73,74 +21,42 @@ async function getData(id, direction) {
     uno_id2styrk08: 'uno_id',
     nus_kortnavn2styrk08: 'nus_kortnavn',
     nus2styrk08: 'nus',
-    styrk082nus: 'styrk08',
+    styrk082nus: 'styrk08'
   };
 
   /**
    * 1. Load data from mapping endpoint
    */
-  const url = ''
-    .concat(endpoint, '?')
-    .concat(idNames[direction], '=')
-    .concat(id, '&retning=')
-    .concat(direction, '&vis_alt=true');
+  const url = "".concat(endpoint, "?").concat(idNames[direction], "=").concat(id, "&retning=").concat(direction, "&vis_alt=true");
   const mapping = direction ? await (await fetch(url)).json() : null;
 
   /**
    * 2. Load data from main endpoint
    */
-  const main =
-    id.slice(0, 2) === 'y_' || id.slice(0, 2) === 'u_'
-      ? await (
-          await fetch(
-            ''.concat(mainEndpoint, '?uno_id=').concat(id, '&vis_alt=true')
-          )
-        ).json()
-      : null;
+  const main = id.slice(0, 2) === 'y_' || id.slice(0, 2) === 'u_' ? await (await fetch("".concat(mainEndpoint, "?uno_id=").concat(id, "&vis_alt=true"))).json() : null;
 
   /**
    * 3. Add missing fields
    */
-  const docs =
-    mapping.response && mapping.response.docs
-      ? mapping.response.docs.map((d) =>
-          _objectSpread(
-            _objectSpread({}, d),
-            {},
-            {
-              over_40: d.antall_personer - d.antall_40,
-              other_experience: d.antall_personer - d.antall_13 - d.antall_710,
-            }
-          )
-        )
-      : null;
-  const mappingData = mapping.response
-    ? _objectSpread(
-        _objectSpread({}, mapping.response),
-        {},
-        {
-          docs,
-        }
-      )
-    : null;
+  const docs = mapping.response && mapping.response.docs ? mapping.response.docs.map(d => _objectSpread(_objectSpread({}, d), {}, {
+    over_40: d.antall_personer - d.antall_40,
+    other_experience: d.antall_personer - d.antall_13 - d.antall_710
+  })) : null;
+  const mappingData = mapping.response ? _objectSpread(_objectSpread({}, mapping.response), {}, {
+    docs
+  }) : null;
   return {
     main: main ? main[id] : null,
-    mapping: mappingData,
+    mapping: mappingData
   };
 }
 function useData() {
-  let unoId =
-    arguments.length > 0 && arguments[0] !== undefined
-      ? arguments[0]
-      : 'y_sykepleier';
-  let direction =
-    arguments.length > 1 && arguments[1] !== undefined
-      ? arguments[1]
-      : 'utdanning2yrke';
+  let unoId = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'y_sykepleier';
+  let direction = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'utdanning2yrke';
   let api_url = arguments.length > 2 ? arguments[2] : undefined;
   const [item, setItem] = (0, _react.useState)();
   (0, _react.useEffect)(() => {
-    getData(unoId, direction).then((data) => {
+    getData(unoId, direction, api_url).then(data => {
       setItem(data);
     });
   }, [unoId, direction]);
