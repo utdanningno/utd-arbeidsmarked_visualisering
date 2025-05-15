@@ -1,6 +1,6 @@
 {
   "name": "@utdanningno/job-market-visuals",
-  "version": "2.1.2-beta.1",
+  "version": "2.1.3",
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/"
   },
