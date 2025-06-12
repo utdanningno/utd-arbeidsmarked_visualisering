@@ -9,11 +9,11 @@ var _propTypes = _interopRequireDefault(require("prop-types"));
 function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
 const MissingData = _ref => {
   let {
-    text = "Missing data"
+    text = 'Missing data'
   } = _ref;
   return /*#__PURE__*/_react.default.createElement("div", null, text);
 };
 MissingData.propTypes = {
-  text: _propTypes.default.string
+  text: _propTypes.default.oneOfType([_propTypes.default.string, _propTypes.default.element])
 };
 var _default = exports.default = MissingData;
