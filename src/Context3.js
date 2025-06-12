@@ -74,7 +74,7 @@ Context3.propTypes = {
   disaggregateBy: PropTypes.arrayOf(PropTypes.string),
   disaggregateLabels: PropTypes.arrayOf(PropTypes.string),
   colors: PropTypes.object,
-  missingDataText: PropTypes.string,
+  missingDataText: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
 };
 
 export default Context3;

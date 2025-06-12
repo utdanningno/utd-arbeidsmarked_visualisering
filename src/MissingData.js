@@ -1,17 +1,12 @@
+import React from 'react';
+import PropTypes from 'prop-types';
 
-import React from "react"
-import PropTypes from "prop-types"
-
-const MissingData = ({ text = "Missing data" }) => {
-  return (
-    <div>
-      { text }
-    </div>
-  )
-}
+const MissingData = ({ text = 'Missing data' }) => {
+  return <div>{text}</div>;
+};
 
 MissingData.propTypes = {
-  text: PropTypes.string,
-}
+  text: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
+};
 
-export default MissingData
+export default MissingData;
