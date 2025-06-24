@@ -16,8 +16,8 @@
   "scripts": {
     "dev": "vite dev",
     "build": "vite build",
-    "build:lib:cjs": "babel src --out-dir lib --presets @babel/preset-env,@babel/preset-react --ignore 'src/index.js,src/App.js'",
-    "build:lib:esm": "babel src --out-dir es --presets @babel/preset-env,@babel/preset-react --ignore 'src/index.js,src/App.js' --plugins @babel/plugin-transform-modules-commonjs",
+    "build:lib:cjs": "babel src --out-dir lib --presets @babel/preset-env,@babel/preset-react --ignore 'src/App.js'",
+    "build:lib:esm": "babel src --out-dir es --presets @babel/preset-env,@babel/preset-react --ignore 'src/App.js' --plugins @babel/plugin-transform-modules-commonjs",
     "build:lib": "npm run build:lib:cjs && npm run build:lib:esm",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
