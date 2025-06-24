@@ -28,4 +28,5 @@ var _Context = _interopRequireDefault(require("./Context2"));
 var _Context2 = _interopRequireDefault(require("./Context3"));
 var _useData = require("./useData");
 function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
+const root = document.getElementById('root');
 _reactDom.default.render(/*#__PURE__*/_react.default.createElement(_react.default.StrictMode, null, /*#__PURE__*/_react.default.createElement(_App.default, null)), document.getElementById('root'));

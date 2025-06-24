@@ -1,15 +1,17 @@
 
 import React from 'react';
-import ReactDOM from 'react-dom';
+import ReactDom from 'react-dom';
 import App from './App';
 
 
-ReactDOM.render(
+const root = document.getElementById('root');
+ReactDom.render(
   <React.StrictMode>
     <App />
   </React.StrictMode>,
   document.getElementById('root')
 );
+
 
 export { default as Context2 } from "./Context2"
 export { default as Context3 } from "./Context3"
