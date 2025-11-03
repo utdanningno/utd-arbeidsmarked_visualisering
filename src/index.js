@@ -1,10 +1,16 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import App from './App';
-import { createRoot } from 'react-dom/client';
 
-const container = document.getElementById('root');
-const root = createRoot(container); // createRoot(container!) if you use TypeScript
-root.render(<App />);
+const rootElement = document.getElementById('root');
+if (rootElement) {
+  ReactDOM.render(
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>,
+    rootElement
+  );
+}
 
 export { default as Context2 } from './Context2';
 export { default as Context3 } from './Context3';

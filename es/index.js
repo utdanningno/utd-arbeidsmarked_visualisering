@@ -22,12 +22,13 @@ Object.defineProperty(exports, "getData", {
   }
 });
 var _react = _interopRequireDefault(require("react"));
+var _reactDom = _interopRequireDefault(require("react-dom"));
 var _App = _interopRequireDefault(require("./App"));
-var _client = require("react-dom/client");
 var _Context = _interopRequireDefault(require("./Context2"));
 var _Context2 = _interopRequireDefault(require("./Context3"));
 var _useData = require("./useData");
 function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
-const container = document.getElementById('root');
-const root = (0, _client.createRoot)(container); // createRoot(container!) if you use TypeScript
-root.render(/*#__PURE__*/_react.default.createElement(_App.default, null));
+const rootElement = document.getElementById('root');
+if (rootElement) {
+  _reactDom.default.render(/*#__PURE__*/_react.default.createElement(_react.default.StrictMode, null, /*#__PURE__*/_react.default.createElement(_App.default, null)), rootElement);
+}
