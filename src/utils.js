@@ -120,16 +120,16 @@ export function prepareMore(docs, limit) {
 }
 
 export const months = [
-    'januar',
-    'februar',
-    'mars',
-    'april',
-    'mai',
-    'juni',
-    'juli',
-    'august',
-    'september',
-    'oktober',
-    'november',
-    'desember',
+    "januar",
+    "februar",
+    "mars",
+    "april",
+    "mai",
+    "juni",
+    "juli",
+    "august",
+    "september",
+    "oktober",
+    "november",
+    "desember",
 ];

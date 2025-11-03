@@ -4,7 +4,7 @@ import { useData } from './useData';
 import { defaultColors, prepareMore } from './utils';
 import Visualization2 from './Visualization2';
 import MissingData from './MissingData';
-import { SourceInfo } from "./SourceInfo";
+import { SourceInfo } from './SourceInfo';
 
 const Context2 = ({
   id = 'y_sykepleier',

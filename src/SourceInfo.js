@@ -19,7 +19,7 @@ export const SourceInfo = ({ kildedato, showKildeDato = false }) => {
     return (
         <p> 
             Kilde: Statistisk sentralbyrå {year + 1}. Tall fra {month} {year}.
-            <a href='/tema/om_utdanning.no/om_yrkes-_og_utdanningstatistikken'>Forklaring til statistikken</a>
+            <a href="/tema/om_utdanning.no/om_yrkes-_og_utdanningstatistikken">Forklaring til statistikken</a>
         </p>
     )
 }
