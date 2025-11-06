@@ -4,7 +4,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.clamp = clamp;
-exports.getColor = exports.defaultColors = void 0;
+exports.months = exports.getColor = exports.defaultColors = void 0;
 exports.prepareMore = prepareMore;
 exports.useResize = void 0;
 exports.useTooltip = useTooltip;
@@ -115,3 +115,4 @@ function prepareMore(docs, limit) {
   }, {});
   return docs.slice(0, limit).concat([more]);
 }
+const months = exports.months = ["januar", "februar", "mars", "april", "mai", "juni", "juli", "august", "september", "oktober", "november", "desember"];

@@ -1,10 +1,10 @@
 import React, { Fragment, useCallback, useMemo, useState } from 'react';
 import PropTypes from 'prop-types';
-
 import { useData } from './useData';
 import { defaultColors, prepareMore } from './utils';
 import Visualization2 from './Visualization2';
 import MissingData from './MissingData';
+import { SourceInfo } from './SourceInfo';
 
 const Context2 = ({
   id = 'y_sykepleier',
@@ -20,6 +20,7 @@ const Context2 = ({
   tooltipStyles,
   tooltipCaretStyles,
   api_url = 'https://v3.api.utdanning.no',
+  showKildeDato = false
 }) => {
   const [usedLimit, setUsedLimit] = useState(limit);
   const item = useData(id, direction, api_url);
@@ -40,22 +41,28 @@ const Context2 = ({
   return (
     <Fragment>
       {docs && docs.length ? (
-        <Visualization2
-          item={{
-            parentId: item.main ? item.main.uno_id : id,
-            subItems: dataset,
-          }}
-          layout={layout}
-          disaggregate={!!disaggregateBy}
-          disaggregateBy={disaggregateBy}
-          disaggregateLabels={disaggregateLabels}
-          tooltipContent={tooltipContent}
-          moreLabel={moreLabel}
-          colors={colors}
-          tooltipStyles={tooltipStyles}
-          tooltipCaretStyles={tooltipCaretStyles}
-          onClickMore={handleClickMore}
-        />
+        <>
+          <Visualization2
+            item={{
+              parentId: item.main ? item.main.uno_id : id,
+              subItems: dataset,
+            }}
+            layout={layout}
+            disaggregate={!!disaggregateBy}
+            disaggregateBy={disaggregateBy}
+            disaggregateLabels={disaggregateLabels}
+            tooltipContent={tooltipContent}
+            moreLabel={moreLabel}
+            colors={colors}
+            tooltipStyles={tooltipStyles}
+            tooltipCaretStyles={tooltipCaretStyles}
+            onClickMore={handleClickMore}
+            />
+          <SourceInfo
+            kildedato={item.main?.kildedato}
+            showKildeDato={showKildeDato}
+          />
+        </>
       ) : (
         <MissingData text={missingDataText} />
       )}
@@ -78,6 +85,7 @@ Context2.propTypes = {
   disaggregateLabels: PropTypes.arrayOf(PropTypes.string),
   colors: PropTypes.object,
   missingDataText: PropTypes.string,
+  showKildeDato: PropTypes.bool
 };
 
 export default Context2;

@@ -10,10 +10,12 @@ var _useData = require("./useData");
 var _utils = require("./utils");
 var _Visualization = _interopRequireDefault(require("./Visualization2"));
 var _MissingData = _interopRequireDefault(require("./MissingData"));
+var _SourceInfo = require("./SourceInfo");
 function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
 function _getRequireWildcardCache(e) { if ("function" != typeof WeakMap) return null; var r = new WeakMap(), t = new WeakMap(); return (_getRequireWildcardCache = function (e) { return e ? t : r; })(e); }
 function _interopRequireWildcard(e, r) { if (!r && e && e.__esModule) return e; if (null === e || "object" != typeof e && "function" != typeof e) return { default: e }; var t = _getRequireWildcardCache(r); if (t && t.has(e)) return t.get(e); var n = { __proto__: null }, a = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var u in e) if ("default" !== u && {}.hasOwnProperty.call(e, u)) { var i = a ? Object.getOwnPropertyDescriptor(e, u) : null; i && (i.get || i.set) ? Object.defineProperty(n, u, i) : n[u] = e[u]; } return n.default = e, t && t.set(e, n), n; }
 const Context2 = _ref => {
+  var _item$main;
   let {
     id = 'y_sykepleier',
     direction = 'uno_id2styrk08',
@@ -27,7 +29,8 @@ const Context2 = _ref => {
     missingDataText = 'Missing data',
     tooltipStyles,
     tooltipCaretStyles,
-    api_url = 'https://v3.api.utdanning.no'
+    api_url = 'https://v3.api.utdanning.no',
+    showKildeDato = false
   } = _ref;
   const [usedLimit, setUsedLimit] = (0, _react.useState)(limit);
   const item = (0, _useData.useData)(id, direction, api_url);
@@ -43,7 +46,7 @@ const Context2 = _ref => {
   const handleClickMore = (0, _react.useCallback)(() => {
     setUsedLimit(oldLimit => oldLimit + limit);
   }, []);
-  return /*#__PURE__*/_react.default.createElement(_react.Fragment, null, docs && docs.length ? /*#__PURE__*/_react.default.createElement(_Visualization.default, {
+  return /*#__PURE__*/_react.default.createElement(_react.Fragment, null, docs && docs.length ? /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(_Visualization.default, {
     item: {
       parentId: item.main ? item.main.uno_id : id,
       subItems: dataset
@@ -58,7 +61,10 @@ const Context2 = _ref => {
     tooltipStyles: tooltipStyles,
     tooltipCaretStyles: tooltipCaretStyles,
     onClickMore: handleClickMore
-  }) : /*#__PURE__*/_react.default.createElement(_MissingData.default, {
+  }), /*#__PURE__*/_react.default.createElement(_SourceInfo.SourceInfo, {
+    kildedato: (_item$main = item.main) === null || _item$main === void 0 ? void 0 : _item$main.kildedato,
+    showKildeDato: showKildeDato
+  })) : /*#__PURE__*/_react.default.createElement(_MissingData.default, {
     text: missingDataText
   }));
 };
@@ -69,6 +75,7 @@ Context2.propTypes = {
   disaggregateBy: _propTypes.default.arrayOf(_propTypes.default.string),
   disaggregateLabels: _propTypes.default.arrayOf(_propTypes.default.string),
   colors: _propTypes.default.object,
-  missingDataText: _propTypes.default.string
+  missingDataText: _propTypes.default.string,
+  showKildeDato: _propTypes.default.bool
 };
 var _default = exports.default = Context2;

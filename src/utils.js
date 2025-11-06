@@ -118,3 +118,18 @@ export function prepareMore(docs, limit) {
   }, {})
   return docs.slice(0, limit).concat([more]);
 }
+
+export const months = [
+    "januar",
+    "februar",
+    "mars",
+    "april",
+    "mai",
+    "juni",
+    "juli",
+    "august",
+    "september",
+    "oktober",
+    "november",
+    "desember",
+];
