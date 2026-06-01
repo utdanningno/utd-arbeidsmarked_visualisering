@@ -27,7 +27,7 @@ const Context2 = _ref => {
     missingDataText = 'Missing data',
     tooltipStyles,
     tooltipCaretStyles,
-    api_url = 'https://v3.api.utdanning.no'
+    api_url = 'https://api.utdanning.no'
   } = _ref;
   const [usedLimit, setUsedLimit] = (0, _react.useState)(limit);
   const item = (0, _useData.useData)(id, direction, api_url);

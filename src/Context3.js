@@ -17,7 +17,7 @@ const Context3 = ({
   colors = defaultColors,
   moreLabel,
   missingDataText = 'Missing data',
-  api_url = 'https://v3.api.utdanning.no',
+  api_url = 'https://api.utdanning.no',
 }) => {
   const [usedLimit, setUsedLimit] = useState(limit);
   const [total, setTotal] = useState();
@@ -25,7 +25,7 @@ const Context3 = ({
   const { docs } = item ? item.mapping || {} : {};
   const dataset = useMemo(
     () => prepareMore(docs, usedLimit),
-    [docs, usedLimit]
+    [docs, usedLimit],
   );
 
   // const customMoreLabel = moreLabel || direction.split("2")[1] === "styrk08"

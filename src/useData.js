@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 export async function getData(
   id,
   direction,
-  api_url = 'https://v3.api.utdanning.no'
+  api_url = 'https://api.utdanning.no',
 ) {
   const mainEndpoint = api_url + '/sammenligning/main';
   const endpoint = api_url + '/sammenligning/arbeidsmarked';
@@ -51,7 +51,7 @@ export async function getData(
 export function useData(
   unoId = 'y_sykepleier',
   direction = 'utdanning2yrke',
-  api_url
+  api_url,
 ) {
   const [item, setItem] = useState();
   useEffect(() => {

@@ -19,7 +19,7 @@ const Context2 = ({
   missingDataText = 'Missing data',
   tooltipStyles,
   tooltipCaretStyles,
-  api_url = 'https://v3.api.utdanning.no',
+  api_url = 'https://api.utdanning.no',
 }) => {
   const [usedLimit, setUsedLimit] = useState(limit);
   const item = useData(id, direction, api_url);
